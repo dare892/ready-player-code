@@ -1,0 +1,75 @@
+javascript:
+  $(document).ready(function(){
+    App.global_chat = App.cable.subscriptions.create(
+      {
+        channel: "RoomChannel",
+        room_id: $('#rooms-show').attr('data-room-id')
+      },
+      {
+        connected: function(data) {
+          console.log('connected')
+          enableChatInput()
+        },
+
+        disconnected: function(data) {
+          console.log('disconnected')
+          disableChatInput()
+        },
+        received: function(data) {
+          console.log('received', data)
+          if(data['data_type'] == 'test'){
+            console.log('test')
+          }
+          else if (data['data_type'] == 'chat'){
+            displayChatMessage(data['sender_name'], data['chat_body'])
+          }
+        },
+        
+        emit: function(data){
+          data['room_id'] = $('#rooms-show').attr('data-room-id')
+          return this.perform('emit', data)
+        }
+      }
+    )
+    hookChatInput()
+  })
+
+  // chats
+  //function createChatMessage(body){
+  //  App.global_chat.emit({
+  //    'data_type':'chat', 
+  //    'sender_name': "#{current_user.name}",
+  //    'sender_hash': "#{current_user.session_hash}",
+  //    'chat_body': body
+  //  })
+  //}
+
+  function displayChatMessage(name, body){
+    $('#room-chat-messages').append("<div class='chat-message'>" + name +" : " + body + "</div>")
+  }
+  
+  function disableChatInput(){
+    //TODO
+  }
+
+  function enableChatInput(){
+    //TODO
+  }
+
+  function hookChatInput(){
+    $('#room-chat-input-container form').submit(function(e){
+      if($(this).find('input[type=text]').val() == ''){
+        e.preventDefault()
+      }
+      else{
+        setTimeout(function() {
+          $('#room-chat-input-container form').find('input[type=text]').val('')
+        }, 10)
+      }
+    })  
+  }
+  
+  //game
+  function startGame(){
+    $('[data-entity=start-game-btn] button').addClass('hidden')
+  }

@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong Title:
+  = @challenge.title
+p
+  strong Description:
+  = @challenge.description
+p
+  strong Difficulty:
+  = @challenge.difficulty
+p
+  strong Language:
+  = @challenge.language
+
+=> link_to 'Edit', edit_challenge_path(@challenge)
+'|
+=< link_to 'Back', challenges_path

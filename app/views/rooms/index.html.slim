@@ -1,0 +1,24 @@
+.container
+  .row
+    .col-sm-3
+      = render partial: "profile/summary"
+      
+      br
+      button.btn-default onclick="$('#new-room-modal').modal('show')" New Room
+      
+    .col-sm-9
+      #rooms-list-container
+        = render partial: "rooms/rooms"
+        
+= render partial: "rooms/new"
+= render partial: 'rooms/pin_enter'
+
+javascript:
+  function showPinEnter(id){
+    $('#pin-enter-modal').modal('show')
+    $('#pin-enter-modal input#id').val(id)
+  }
+
+  function refreshRooms(){
+    //TODO every 10 seconds, refresh room list
+  }

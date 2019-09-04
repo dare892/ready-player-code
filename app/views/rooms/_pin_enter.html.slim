@@ -1,0 +1,11 @@
+.modal#pin-enter-modal
+  .modal-dialog
+    .modal-content
+      h3 Enter Pin
+      = form_tag pin_enter_rooms_path, remote: true do |f|
+        label Pin
+        = text_field_tag :pin
+        .hidden 
+          = number_field_tag :id
+        = submit_tag 'Enter'
+      

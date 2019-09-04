@@ -1,0 +1,18 @@
+#rooms-show-controls
+  h4 = @room.name
+  h5 = "Host: #{@room.host.name}"
+  - if @room.pin
+  h5 = "Password: #{@room.pin}"
+  h5 = @room.language.name
+  h5 = @room.mode
+  h5 = @room.difficulty
+  - if @room.host == current_user
+    #start-game-btn-wrapper data-entity="start-game-btn"
+      = form_for @room, remote: true do |f|
+        = f.text_field :status, value: 'playing'
+        = hidden_field_tag :action_type, 'start_game'
+        button.btn-default Start
+  
+  = link_to @room_user, method: :delete, data: {confirm: 'Are you sure?'} do
+    button.btn-default Exit
+    

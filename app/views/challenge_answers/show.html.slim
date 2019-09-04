@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Challenge:
+  = @challenge_answer.challenge
+p
+  strong Input:
+  = @challenge_answer.input
+p
+  strong Output:
+  = @challenge_answer.output
+
+=> link_to 'Edit', edit_challenge_answer_path(@challenge_answer)
+'|
+=< link_to 'Back', challenge_answers_path

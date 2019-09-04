@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong User:
+  = @room_user.user
+p
+  strong Room:
+  = @room_user.room
+p
+  strong Role:
+  = @room_user.role
+
+=> link_to 'Edit', edit_room_user_path(@room_user)
+'|
+=< link_to 'Back', room_users_path

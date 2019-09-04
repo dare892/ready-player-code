@@ -1,0 +1,25 @@
+h1 Listing room_users
+
+table
+  thead
+    tr
+      th User
+      th Room
+      th Role
+      th
+      th
+      th
+
+  tbody
+    - @room_users.each do |room_user|
+      tr
+        td = room_user.user
+        td = room_user.room
+        td = room_user.role
+        td = link_to 'Show', room_user
+        td = link_to 'Edit', edit_room_user_path(room_user)
+        td = link_to 'Destroy', room_user, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Room user', new_room_user_path

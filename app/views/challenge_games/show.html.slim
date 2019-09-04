@@ -1,0 +1,12 @@
+p#notice = notice
+
+p
+  strong Game:
+  = @challenge_game.game
+p
+  strong Challenge:
+  = @challenge_game.challenge
+
+=> link_to 'Edit', edit_challenge_game_path(@challenge_game)
+'|
+=< link_to 'Back', challenge_games_path

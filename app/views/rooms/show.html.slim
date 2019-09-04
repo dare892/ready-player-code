@@ -1,0 +1,10 @@
+#rooms-show data-room-id="#{@room.id}"
+  .container-fluid
+    .row
+      .col-sm-3
+        = render partial: "rooms/show/controls"
+        = render partial: "rooms/show/chat"
+        = render partial: "rooms/show/cable"
+        
+      .col-sm-9
+        #code-main

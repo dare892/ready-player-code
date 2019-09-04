@@ -1,0 +1,25 @@
+h1 Listing challenge_answers
+
+table
+  thead
+    tr
+      th Challenge
+      th Input
+      th Output
+      th
+      th
+      th
+
+  tbody
+    - @challenge_answers.each do |challenge_answer|
+      tr
+        td = challenge_answer.challenge
+        td = challenge_answer.input
+        td = challenge_answer.output
+        td = link_to 'Show', challenge_answer
+        td = link_to 'Edit', edit_challenge_answer_path(challenge_answer)
+        td = link_to 'Destroy', challenge_answer, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Challenge answer', new_challenge_answer_path

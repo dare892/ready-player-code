@@ -1,0 +1,5 @@
+<% if @alert %>
+  alert("<%= @alert %>")
+<% else %>
+  window.location.href = "<%=room_path(@room)%>";
+<% end %>

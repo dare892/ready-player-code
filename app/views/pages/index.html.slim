@@ -1,0 +1,11 @@
+#pages-index
+  - if current_user.nil?
+    h3 Welcome
+    = render partial: 'devise/registrations/new_simple'
+  - else
+    h3 = "Welcome, #{current_user.name}"
+    = link_to rooms_path do
+      div Multi Player
+    = link_to single_path do
+      div Single Player
+    

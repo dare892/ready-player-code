@@ -1,0 +1,23 @@
+h1 Listing challenge_games
+
+table
+  thead
+    tr
+      th Game
+      th Challenge
+      th
+      th
+      th
+
+  tbody
+    - @challenge_games.each do |challenge_game|
+      tr
+        td = challenge_game.game
+        td = challenge_game.challenge
+        td = link_to 'Show', challenge_game
+        td = link_to 'Edit', edit_challenge_game_path(challenge_game)
+        td = link_to 'Destroy', challenge_game, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Challenge game', new_challenge_game_path

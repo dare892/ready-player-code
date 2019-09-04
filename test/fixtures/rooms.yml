@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  pin: MyString
+  language: one
+  mode: 1
+  difficulty: 1
+  status: 1
+
+two:
+  name: MyString
+  pin: MyString
+  language: two
+  mode: 1
+  difficulty: 1
+  status: 1
