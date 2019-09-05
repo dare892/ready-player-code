@@ -3,7 +3,7 @@ class RoomsController < ApplicationController
 
   def index
     current_user.room_users.destroy_all
-    @rooms = Room.all
+    @rooms = Room.all.order(created_at: :desc)
   end
 
   def show
@@ -35,14 +35,14 @@ class RoomsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /rooms/1
-  # PATCH/PUT /rooms/1.json
   def update
     respond_to do |format|
       if @room.update(room_params)
         case params[:action_type]
         when 'start_game'
-          format.js {"rooms/show/start_game.js.erb"}
+          @room.games.find_or_create_by(status: 'playing')
+          @room.emit({'data_type':'game_status', 'message':'start_game'})
+          format.js { render json: nil, status: :ok }
         else
           format.html { redirect_to @room, notice: 'Room was successfully updated.' }
         end
@@ -53,8 +53,6 @@ class RoomsController < ApplicationController
     end
   end
 
-  # DELETE /rooms/1
-  # DELETE /rooms/1.json
   def destroy
     @room.destroy
     respond_to do |format|
@@ -62,7 +60,7 @@ class RoomsController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
+
   def pin_enter
     if @room.pin != params[:pin]
       @alert = "Wrong Password"

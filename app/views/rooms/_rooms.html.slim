@@ -13,12 +13,12 @@ table
     - @rooms.each do |room|
       tr
         td = room.name
-        td = room.language
+        td = room.language.name
         td = room.mode
         td = room.difficulty
         td = room.status
         td = 'locked' if room.pin.present?
-        td 
+        td
           - if room.pin.present?
             span onclick="showPinEnter(#{room.id})" Enter
           - else

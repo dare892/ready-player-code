@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20190904185905) do
   create_table "games", force: :cascade do |t|
     t.bigint "room_id"
     t.string "name"
+    t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["room_id"], name: "index_games_on_room_id"

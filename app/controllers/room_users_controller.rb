@@ -52,7 +52,12 @@ class RoomUsersController < ApplicationController
   end
 
   def destroy
+    if @room_user.room.room_users.count == 1
+      @destroy_room = true
+      @room = @room_user.room
+    end
     @room_user.destroy
+    @room.destroy if @destroy_room == true
     respond_to do |format|
       format.html { redirect_to rooms_path }
     end

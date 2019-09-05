@@ -2,14 +2,14 @@
   .row
     .col-sm-3
       = render partial: "profile/summary"
-      
+
       br
       button.btn-default onclick="$('#new-room-modal').modal('show')" New Room
-      
+
     .col-sm-9
       #rooms-list-container
         = render partial: "rooms/rooms"
-        
+
 = render partial: "rooms/new"
 = render partial: 'rooms/pin_enter'
 
@@ -20,5 +20,32 @@ javascript:
   }
 
   function refreshRooms(){
+    $.ajax
     //TODO every 10 seconds, refresh room list
+  }
+
+  var rooms_timer;
+  var refresh_rooms = true
+  var rooms_timer = setInterval(function(){
+    if(refresh_rooms){
+      $.get('/rooms')
+    }
+  }, 2000);
+
+    $('input#search-user').on('keyup', function(e) {
+    // clear any existing timer which will exist if the user is actively typing
+    clearTimeout(timer);
+    keywords = $(e.target).val();
+    timer = setTimeout(function(){goFilter(keywords, "", "asc")}, 400);
+  });
+
+  function goFilter(keywords, sort_by, direction) {
+    $.get(
+     Routes.employees_path(),
+     {
+       keywords: keywords,
+       sort_by: sort_by,
+       direction: direction
+     }
+    )
   }

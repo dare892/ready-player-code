@@ -9,10 +9,16 @@
   - if @room.host == current_user
     #start-game-btn-wrapper data-entity="start-game-btn"
       = form_for @room, remote: true do |f|
-        = f.text_field :status, value: 'playing'
-        = hidden_field_tag :action_type, 'start_game'
+        .hidden
+          = f.text_field :status, value: 'playing'
+          = text_field_tag :action_type, 'start_game'
         button.btn-default Start
-  
+
   = link_to @room_user, method: :delete, data: {confirm: 'Are you sure?'} do
     button.btn-default Exit
-    
+
+  br
+  br
+  br
+  h3 Mimic a win
+  = link_to 
