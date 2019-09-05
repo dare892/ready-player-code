@@ -7,22 +7,25 @@ class RoomsController < ApplicationController
   end
 
   def show
-    @room_user = @room.room_users.find_or_create_by(user: current_user)
+    if @room.status == 'pending'
+      @room_user = @room.room_users.find_or_create_by(user: current_user)
+    else
+      @room_user = @room.room_users.find_by(user: current_user)
+      if !@room_user
+        redirect_to rooms_path, alert: 'That room is already in a game.'
+      end
+    end
   end
 
-  # GET /rooms/new
   def new
     @room = Room.new
   end
 
-  # GET /rooms/1/edit
   def edit
   end
 
-  # POST /rooms
-  # POST /rooms.json
   def create
-    @room = Room.new(room_params)
+    @room = Room.new(room_params.merge(status: 'pending'))
 
     respond_to do |format|
       if @room.save
@@ -40,8 +43,9 @@ class RoomsController < ApplicationController
       if @room.update(room_params)
         case params[:action_type]
         when 'start_game'
-          @room.games.find_or_create_by(status: 'playing')
-          @room.emit({'data_type':'game_status', 'message':'start_game'})
+          @game = @room.games.create(status: 'playing')
+          @game.setup
+          @room.emit({'data_type':'game_status', 'message':'start_game', 'game_id': @game.id})
           format.js { render json: nil, status: :ok }
         else
           format.html { redirect_to @room, notice: 'Room was successfully updated.' }
@@ -68,12 +72,10 @@ class RoomsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_room
       @room = Room.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def room_params
       params.require(:room).permit(:name, :pin, :language_id, :mode, :difficulty, :status)
     end

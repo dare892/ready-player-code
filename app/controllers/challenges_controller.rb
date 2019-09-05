@@ -1,5 +1,5 @@
 class ChallengesController < ApplicationController
-  before_action :set_challenge, only: [:show, :edit, :update, :destroy]
+  before_action :set_challenge, only: [:show, :edit, :update, :destroy, :load]
 
   # GET /challenges
   # GET /challenges.json
@@ -59,6 +59,10 @@ class ChallengesController < ApplicationController
       format.html { redirect_to challenges_url, notice: 'Challenge was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+  
+  def load
+    
   end
 
   private

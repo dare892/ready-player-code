@@ -1,4 +1,6 @@
 javascript:
+  current_game_challenge_ids = []
+
   $(document).ready(function(){
     App.global_chat = App.cable.subscriptions.create(
       {
@@ -27,7 +29,7 @@ javascript:
           else if (da_t == 'game_status'){
             mg = data['message']
             if(mg == 'start_game'){
-              startGame()
+              startGame(data['game_id'])
             }
           }
         },
@@ -68,7 +70,17 @@ javascript:
   }
 
   //game
-  function startGame(){
+  function startGame(game_id){
     $('[data-entity=start-game-btn] button').addClass('hidden')
-    alert('game start!')
+    $.get('/games/'+game_id+'/load')
   }
+
+  function loadChallenges(challenge_ids){
+    current_game_challenge_ids = challenge_ids
+    loadChallenge(current_game_challenge_ids[0])
+  }
+  
+  function loadChallenge(challenge_id){
+    $.get('/challenges/'+challenge_id+'/load')
+  }
+  

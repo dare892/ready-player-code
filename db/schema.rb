@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190904185905) do
+ActiveRecord::Schema.define(version: 20190905182828) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,24 @@ ActiveRecord::Schema.define(version: 20190904185905) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["language_id"], name: "index_challenges_on_language_id"
+  end
+
+  create_table "game_mapping_groups", force: :cascade do |t|
+    t.integer "difficulty"
+    t.bigint "language_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["language_id"], name: "index_game_mapping_groups_on_language_id"
+  end
+
+  create_table "game_mappings", force: :cascade do |t|
+    t.bigint "game_mapping_group_id"
+    t.bigint "challenge_id"
+    t.integer "sort"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["challenge_id"], name: "index_game_mappings_on_challenge_id"
+    t.index ["game_mapping_group_id"], name: "index_game_mappings_on_game_mapping_group_id"
   end
 
   create_table "games", force: :cascade do |t|

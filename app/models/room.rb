@@ -2,6 +2,7 @@ class Room < ApplicationRecord
   belongs_to :language
   has_many :messages, dependent: :destroy
   has_many :room_users, dependent: :destroy
+  has_many :games
 
   enum mode: ['free_for_all']
   enum status: ['pending','playing']
@@ -26,7 +27,8 @@ class Room < ApplicationRecord
     when 'game_status'
       ActionCable.server.broadcast "room_#{self.id}_channel",
       data_type: 'game_status',
-      message: data[:message]
+      message: data[:message],
+      game_id: data[:game_id]
     else
       puts "Not sure how to handle."
     end

@@ -1,11 +1,21 @@
 Rails.application.routes.draw do
   
+  resources :game_mappings
+  resources :game_mapping_groups
   mount ActionCable.server => '/cable'
 
   resources :challenge_games
-  resources :games
+  resources :games do
+    member do
+      get 'load' => 'games#load', as: :load
+    end
+  end
   resources :challenge_answers
-  resources :challenges
+  resources :challenges do
+    member do
+      get 'load' => 'challenges#load', as: :load
+    end
+  end
   resources :room_users
   resources :messages
   resources :rooms do

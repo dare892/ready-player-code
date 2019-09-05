@@ -3,7 +3,7 @@ class CreateChallengeGames < ActiveRecord::Migration[5.1]
     create_table :challenge_games do |t|
       t.references :game
       t.references :challenge
-
+      t.integer :sort
       t.timestamps
     end
   end
