@@ -9,6 +9,8 @@
     .col-sm-9
       #rooms-list-container
         = render partial: "rooms/rooms"
+        
+      = render partial: "profile/global_chat"
 
 = render partial: "rooms/new"
 = render partial: 'rooms/pin_enter'
@@ -17,11 +19,6 @@ javascript:
   function showPinEnter(id){
     $('#pin-enter-modal').modal('show')
     $('#pin-enter-modal input#id').val(id)
-  }
-
-  function refreshRooms(){
-    $.ajax
-    //TODO every 10 seconds, refresh room list
   }
 
   var rooms_timer;

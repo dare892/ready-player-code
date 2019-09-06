@@ -18,6 +18,6 @@ class Game < ApplicationRecord
   end
   
   def completed_all_challenges(current_user)
-    self.challenge_games.pluck(:id).uniq.sort == current_user.responses.pluck(:challenge_game_id).uniq.sort
+    (self.challenge_games.pluck(:id).uniq.sort - current_user.responses.where(challenge_game_id: self.challenge_games.pluck(:id)).pluck(:challenge_game_id).uniq.sort).blank?
   end
 end

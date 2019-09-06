@@ -1,0 +1,61 @@
+javascript:
+  $(document).ready(function(){
+    App.global_chat = App.cable.subscriptions.create(
+      {
+        channel: "MainChannel"
+      },
+      {
+        connected: function(data) {
+          console.log('connected')
+          enableMainChatInput()
+        },
+
+        disconnected: function(data) {
+          console.log('disconnected')
+          disableMainChatInput()
+        },
+        received: function(data) {
+          console.log('received', data)
+          da_t = data['data_type']
+          if (da_t == 'user'){
+            
+          }
+          else if (da_t == 'chat'){
+            displayMainChatMessage(data['sender_name'], data['chat_body'])
+          }
+          else if (da_t == 'game_status'){
+            
+          }
+          else if (da_t == 'in_game'){
+            
+          }
+        }
+      }
+    )
+    hookMainChatInput()
+  })
+
+  function enableMainChatInput(){
+  
+  }
+  
+  function disableMainChatInput(){
+  
+  }
+
+  function hookMainChatInput(){
+    $('#global-chat-input-container form').submit(function(e){
+      if($(this).find('input[type=text]').val() == ''){
+        e.preventDefault()
+      }
+      else{
+        setTimeout(function() {
+          $('#global-chat-input-container form').find('input[type=text]').val('')
+        }, 10)
+      }
+    })
+  }
+  
+  function displayMainChatMessage(name, body){
+    $('#global-chat-messages').append("<div class='chat-message'>" + name +" : " + body + "</div>")
+  }

@@ -35,9 +35,14 @@ class Room < ApplicationRecord
       message = data[:message]
       room = message.room
       user = message.user
+      if user
+        display_name = "#{user.name} : "
+      else
+        display_name = ""
+      end
       ActionCable.server.broadcast "room_#{self.id}_channel",
         data_type: 'chat',
-        sender_name: user.try(:name),
+        sender_name: display_name,
         chat_body: message.body
     when 'game_status'
       ActionCable.server.broadcast "room_#{self.id}_channel",
@@ -51,6 +56,12 @@ class Room < ApplicationRecord
           data_type: data[:data_type],
           message: data[:message],
           session_hash: data[:session_hash]
+      when 'completed_game'
+        ActionCable.server.broadcast "room_#{self.id}_channel",
+          data_type: data[:data_type],
+          message: data[:message],
+          session_hash: data[:session_hash],
+          player_name: data[:player_name]
       end
     else
       puts "Not sure how to handle."

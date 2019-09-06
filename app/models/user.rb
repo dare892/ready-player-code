@@ -18,5 +18,33 @@ class User < ApplicationRecord
     else
       return hash
     end
-  end     
+  end
+  
+  
+  ########## cable
+  def emit(data)
+    case data[:data_type]
+    when 'user'
+      # 
+    when 'chat'
+      message = data[:message]
+      user = message.user
+      ActionCable.server.broadcast "main_channel",
+        data_type: 'chat',
+        sender_name: user.try(:name),
+        chat_body: message.body
+    end
+  end
+  
+  
+  ########## points
+  def earn_points(reward)
+    case reward
+    when 'beat_challenge'
+      pts = 10
+    when 'won_game'
+      pts = 100
+    end
+    self.update(points: self.points.to_i + pts)
+  end
 end

@@ -50,12 +50,10 @@ javascript:
             if(mg == 'completed_challenge'){
               displayChallengeCompletedConfettiForUser(data['session_hash'])
             }
+            else if(mg == 'completed_game'){
+              displayGameCompletedConfettiForUser(data['session_hash'], data['player_name'])
+            }
           }
-        },
-
-        emit: function(data){
-          data['room_id'] = $('#rooms-show').attr('data-room-id')
-          return this.perform('emit', data)
         }
       }
     )
@@ -64,7 +62,7 @@ javascript:
 
   //chats
   function displayChatMessage(name, body){
-    $('#room-chat-messages').append("<div class='chat-message'>" + name +" : " + body + "</div>")
+    $('#room-chat-messages').append("<div class='chat-message'>" + name + body + "</div>")
   }
 
   function disableChatInput(){
@@ -140,10 +138,13 @@ javascript:
     }
   }
   
-  function completedGame(){
-    $("#code-main-wrapper")
-  }
-  
-  function displaycompletedGameConfettiForUser(session_hash){
-    console.log('yay for', session_hash)
+  function displayGameCompletedConfettiForUser(session_hash, player_name){
+    my_window = $("#code-main-wrapper[data-session-hash="+session_hash+"]")
+    other_player_window = $(".other-player[data-session-hash="+session_hash+"]")
+    if(my_window.length > 0){
+      alert('You won!')
+    }
+    else if (other_player_window.length > 0){
+      alert('You lost. ' + player_name + ' won!')
+    }
   }

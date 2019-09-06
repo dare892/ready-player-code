@@ -18,6 +18,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       t.string :session_hash
       t.integer :win
       t.integer :loss
+      t.integer :points
 
       ## Trackable
       # t.integer  :sign_in_count, default: 0, null: false

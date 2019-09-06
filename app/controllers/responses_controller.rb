@@ -32,11 +32,13 @@ class ResponsesController < ApplicationController
       if @response.save
         if @result == 'pass'
           if @response.challenge_game.game.completed_all_challenges(current_user)
-            # emit to all
+            @response.room.emit({'data_type':'in_game', 'message':'completed_game', 'session_hash':current_user.session_hash})
+            @response.room.update(status: 'pending')
+            current_user.earn_points(100)
             format.js { render "games/completed.js.erb"}
           else
-            @response.room.emit({'data_type':'in_game', 'message':'completed_challenge', 'session_hash':current_user.session_hash})
-            # emit to all
+            current_user.earn_points(10)
+            @response.room.emit({'data_type':'in_game', 'message':'completed_challenge', 'session_hash':current_user.session_hash, 'player_name':current_user.name})
             format.js { render "responses/success.js.erb"}
           end
         else
