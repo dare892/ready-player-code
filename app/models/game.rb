@@ -9,7 +9,14 @@ class Game < ApplicationRecord
     difficulty = 'easy'
     gmg = GameMappingGroup.where(difficulty: difficulty).shuffle.first
     gmg.game_mappings.order(:sort).each_with_index do |game_mapping, index|
-      self.challenge_games.create(challenge: game_mapping.challenge, sort: index)
+      self.challenge_games.create(
+        challenge: game_mapping.challenge, 
+        sort: index
+      )
     end
+  end
+  
+  def completed_all_challenges(current_user)
+    self.challenge_games.pluck(:id).uniq.sort == current_user.responses.pluck(:challenge_game_id).uniq.sort
   end
 end

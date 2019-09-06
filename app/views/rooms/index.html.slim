@@ -27,25 +27,7 @@ javascript:
   var rooms_timer;
   var refresh_rooms = true
   var rooms_timer = setInterval(function(){
-    if(refresh_rooms){
+    if(refresh_rooms && $('#rooms-list-container').length > 0){
       $.get('/rooms')
     }
-  }, 2000);
-
-    $('input#search-user').on('keyup', function(e) {
-    // clear any existing timer which will exist if the user is actively typing
-    clearTimeout(timer);
-    keywords = $(e.target).val();
-    timer = setTimeout(function(){goFilter(keywords, "", "asc")}, 400);
-  });
-
-  function goFilter(keywords, sort_by, direction) {
-    $.get(
-     Routes.employees_path(),
-     {
-       keywords: keywords,
-       sort_by: sort_by,
-       direction: direction
-     }
-    )
-  }
+  }, 10000);

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :responses
   resources :game_mappings
   resources :game_mapping_groups
   mount ActionCable.server => '/cable'

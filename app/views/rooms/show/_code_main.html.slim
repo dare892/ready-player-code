@@ -1,0 +1,20 @@
+#code-main
+  #code-main-title = @challenge.title
+  #code-main-description = @challenge.description
+  #code-main-answers
+    table.table
+      th
+        td Input
+        td Outut
+      - @challenge.challenge_answers.each do |ans|
+        tr
+          td = ans.input
+          td = ans.output
+
+  = form_for Response.new, remote: true do |f|
+    = f.text_area :body, placeholder: 'Submit answer'
+    .hidden
+      = f.text_field :challenge_game_id, value: @challenge_game.id
+      = f.text_field :user_id, value: current_user.id
+    = f.submit
+    

@@ -13,12 +13,18 @@ languages.each do |language|
   @l = Language.create(name: language)
   (0..4).each do |num|
     (0..2).each do |chal_num|
-      @l.challenges.create(
+      @chal = @l.challenges.create(
         title: "Sample #{language} challenge #{num+1}-#{chal_num+1}",
         description: 'Do something awesome.',
         difficulty: Challenge.difficulties.keys[num],
         published: true
       )
+      (0..3).each do |ans_num|
+        @chal.challenge_answers.create(
+          input: ans_num,
+          output: ans_num+2
+        )
+      end
     end
   end
 end

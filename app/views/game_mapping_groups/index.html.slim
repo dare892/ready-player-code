@@ -1,0 +1,23 @@
+h1 Listing game_mapping_groups
+
+table
+  thead
+    tr
+      th Difficulty
+      th Language
+      th
+      th
+      th
+
+  tbody
+    - @game_mapping_groups.each do |game_mapping_group|
+      tr
+        td = game_mapping_group.difficulty
+        td = game_mapping_group.language
+        td = link_to 'Show', game_mapping_group
+        td = link_to 'Edit', edit_game_mapping_group_path(game_mapping_group)
+        td = link_to 'Destroy', game_mapping_group, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Game mapping group', new_game_mapping_group_path

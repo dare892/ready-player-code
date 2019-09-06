@@ -1,5 +1,6 @@
 javascript:
   current_game_challenge_ids = []
+  current_game_id = ""
 
   $(document).ready(function(){
     App.global_chat = App.cable.subscriptions.create(
@@ -73,6 +74,7 @@ javascript:
   function startGame(game_id){
     $('[data-entity=start-game-btn] button').addClass('hidden')
     $.get('/games/'+game_id+'/load')
+    current_game_id = game_id
   }
 
   function loadChallenges(challenge_ids){
@@ -81,6 +83,36 @@ javascript:
   }
   
   function loadChallenge(challenge_id){
-    $.get('/challenges/'+challenge_id+'/load')
+    $.get("/challenges/"+challenge_id+"/load?game_id=" + current_game_id )
   }
   
+  function completedChallenge(challenge_id){
+    challenge_ids = current_game_challenge_ids
+    for( var i = 0; i < challenge_ids.length; i++){ 
+      if ( challenge_ids[i] === challenge_id) {
+        challenge_ids.splice(i, 1); 
+        i--;
+        break;
+      }
+    }
+    current_game_challenge_ids = challenge_ids
+    displayChallengeCompletedConfetti()
+    loadChallenge(current_game_challenge_ids[0])
+  }
+  
+  function displayChallengeCompletedConfetti(){
+    //TODO cool confetti
+    console.log('yay')
+  }
+  
+  function displayChallengeCompletedConfettiForUser(user_hash){
+    console.log('yay for', user_hash)
+  }
+  
+  function completedGame(){
+    $("#code-main-wrapper")
+  }
+  
+  function displaycompletedGameConfettiForUser(user_hash){
+    console.log('yay for', user_hash)
+  }

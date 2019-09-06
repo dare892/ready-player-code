@@ -1,0 +1,15 @@
+= form_for @game_mapping_group do |f|
+  - if @game_mapping_group.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@game_mapping_group.errors.count, "error")} prohibited this game_mapping_group from being saved:"
+      ul
+        - @game_mapping_group.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :difficulty
+    = f.number_field :difficulty
+  .field
+    = f.label :language
+    = f.text_field :language
+  .actions = f.submit

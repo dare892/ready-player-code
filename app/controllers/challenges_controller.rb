@@ -1,5 +1,5 @@
 class ChallengesController < ApplicationController
-  before_action :set_challenge, only: [:show, :edit, :update, :destroy, :load]
+  before_action :set_challenge, only: [:show, :edit, :update, :destroy, :load, :submit]
 
   # GET /challenges
   # GET /challenges.json
@@ -62,9 +62,9 @@ class ChallengesController < ApplicationController
   end
   
   def load
-    
+    @challenge_game = ChallengeGame.find_by(game_id: params[:game_id], challenge: @challenge)
   end
-
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_challenge

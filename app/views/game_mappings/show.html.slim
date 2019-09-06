@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Game mapping group:
+  = @game_mapping.game_mapping_group
+p
+  strong Challenge:
+  = @game_mapping.challenge
+p
+  strong Sort:
+  = @game_mapping.sort
+
+=> link_to 'Edit', edit_game_mapping_path(@game_mapping)
+'|
+=< link_to 'Back', game_mappings_path

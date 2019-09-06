@@ -1,0 +1,12 @@
+p#notice = notice
+
+p
+  strong Difficulty:
+  = @game_mapping_group.difficulty
+p
+  strong Language:
+  = @game_mapping_group.language
+
+=> link_to 'Edit', edit_game_mapping_group_path(@game_mapping_group)
+'|
+=< link_to 'Back', game_mapping_groups_path

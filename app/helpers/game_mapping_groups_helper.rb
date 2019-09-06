@@ -1,0 +1,2 @@
+module GameMappingGroupsHelper
+end

@@ -1,0 +1,25 @@
+h1 Listing responses
+
+table
+  thead
+    tr
+      th Challenge game
+      th User
+      th Body
+      th
+      th
+      th
+
+  tbody
+    - @responses.each do |response|
+      tr
+        td = response.challenge_game
+        td = response.user
+        td = response.body
+        td = link_to 'Show', response
+        td = link_to 'Edit', edit_response_path(response)
+        td = link_to 'Destroy', response, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Response', new_response_path
