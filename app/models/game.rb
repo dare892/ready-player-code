@@ -1,6 +1,7 @@
 class Game < ApplicationRecord
   belongs_to :room, optional: true
   has_many :challenge_games
+  has_many :challenges, through: :challenge_games
   
   enum status: ['playing','finished']
   

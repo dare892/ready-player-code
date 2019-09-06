@@ -35,6 +35,7 @@ class ResponsesController < ApplicationController
             # emit to all
             format.js { render "games/completed.js.erb"}
           else
+            @response.room.emit({'data_type':'in_game', 'message':'completed_challenge', 'session_hash':current_user.session_hash})
             # emit to all
             format.js { render "responses/success.js.erb"}
           end

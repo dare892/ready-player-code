@@ -52,12 +52,17 @@ class RoomUsersController < ApplicationController
   end
 
   def destroy
+    @room = @room_user.room
     if @room_user.room.room_users.count == 1
       @destroy_room = true
-      @room = @room_user.room
     end
     @room_user.destroy
-    @room.destroy if @destroy_room == true
+    if @destroy_room == true
+      @room.destroy 
+    else
+      @room.emit({'data_type':'user', 'message':'player_left', 'session_hash':current_user.session_hash, 'player_name':current_user.name})
+      @room.messages.create(body: "#{current_user.name} has left.")
+    end
     respond_to do |format|
       format.html { redirect_to rooms_path }
     end

@@ -8,7 +8,12 @@ class RoomsController < ApplicationController
 
   def show
     if @room.status == 'pending'
-      @room_user = @room.room_users.find_or_create_by(user: current_user)
+      @room_user = @room.room_users.find_by(user: current_user)
+      if !@room_user
+        @room_user = @room.room_users.create(user: current_user)
+        @room.messages.create(body: "#{current_user.name} has joined.")
+        @room.emit({'data_type':'user', 'message':'player_joined', 'session_hash':current_user.session_hash})
+      end
     else
       @room_user = @room.room_users.find_by(user: current_user)
       if !@room_user
@@ -68,6 +73,13 @@ class RoomsController < ApplicationController
   def pin_enter
     if @room.pin != params[:pin]
       @alert = "Wrong Password"
+    end
+  end
+  
+  def load_other_player
+    respond_to do |format|
+      @player = User.find_by(session_hash: params[:session_hash])
+      format.js { render "rooms/show/load_other_player"}
     end
   end
 

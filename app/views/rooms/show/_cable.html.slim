@@ -24,6 +24,18 @@ javascript:
           if(da_t == 'test'){
             console.log('test')
           }
+          else if (da_t == 'user'){
+            mg = data['message']
+            if(mg == 'player_joined'){
+              session_hash = data['session_hash']
+              if(session_hash != "#{current_user.session_hash}" && $(".other-player[data-session-hash=" + session_hash + "]").length == 0){
+                $.get("#{@room.id}/load_other_player/"+session_hash+'')
+              }
+            }
+            else if(mg == 'player_left'){
+              $('.other-player[data-session-hash='+data['session_hash']+']').remove()
+            }
+          }
           else if (da_t == 'chat'){
             displayChatMessage(data['sender_name'], data['chat_body'])
           }
@@ -31,6 +43,12 @@ javascript:
             mg = data['message']
             if(mg == 'start_game'){
               startGame(data['game_id'])
+            }
+          }
+          else if (da_t == 'in_game'){
+            mg = data['message']
+            if(mg == 'completed_challenge'){
+              displayChallengeCompletedConfettiForUser(data['session_hash'])
             }
           }
         },
@@ -96,23 +114,36 @@ javascript:
       }
     }
     current_game_challenge_ids = challenge_ids
-    displayChallengeCompletedConfetti()
+    //displayChallengeCompletedConfetti()
     loadChallenge(current_game_challenge_ids[0])
   }
   
-  function displayChallengeCompletedConfetti(){
-    //TODO cool confetti
-    console.log('yay')
-  }
+  //function displayChallengeCompletedConfetti(){
+  //  //TODO cool confetti
+  //  console.log('yay')
+  //}
   
-  function displayChallengeCompletedConfettiForUser(user_hash){
-    console.log('yay for', user_hash)
+  function displayChallengeCompletedConfettiForUser(session_hash){
+    my_window = $("#code-main-wrapper[data-session-hash="+session_hash+"]")
+    other_player_window = $(".other-player[data-session-hash="+session_hash+"]")
+    if(my_window.length > 0){
+      my_window.addClass('highlighted')
+      setTimeout(function() {
+        my_window.removeClass('highlighted')
+      }, 1000)
+    }
+    else if (other_player_window.length > 0){
+      other_player_window.addClass('highlighted')
+      setTimeout(function() {
+        other_player_window.removeClass('highlighted')
+      }, 1000)
+    }
   }
   
   function completedGame(){
     $("#code-main-wrapper")
   }
   
-  function displaycompletedGameConfettiForUser(user_hash){
-    console.log('yay for', user_hash)
+  function displaycompletedGameConfettiForUser(session_hash){
+    console.log('yay for', session_hash)
   }

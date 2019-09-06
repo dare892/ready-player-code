@@ -7,5 +7,9 @@
         = render partial: "rooms/show/cable"
         
       .col-sm-9
-        #code-main-wrapper
+        #code-main-wrapper data-session-hash="#{current_user.session_hash}" style="border: solid gray 1px;min-height: 300px;"
           / show/code_main
+          
+        #other-players-wrapper style="display: flex;"
+          - @room.users.where.not(id: current_user.id).each do |player|
+            = render partial: 'rooms/show/player', locals: {player: player}

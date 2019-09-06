@@ -23,6 +23,9 @@ Rails.application.routes.draw do
     collection do
       post 'pin_enter' => 'rooms#pin_enter'
     end
+    member do
+      get 'load_other_player/:session_hash' => 'rooms#load_other_player', as: :load_other_player
+    end
   end
   resources :languages
   
