@@ -60,7 +60,7 @@ javascript:
     hookChatInput()
   })
 
-  //chats
+  //////////////////// CHATS ////////////////////
   function displayChatMessage(name, body){
     $('#room-chat-messages').append("<div class='chat-message'>" + name + body + "</div>")
   }
@@ -86,7 +86,7 @@ javascript:
     })
   }
 
-  //game
+  //////////////////// GAME ////////////////////
   function startGame(game_id){
     $('[data-entity=start-game-btn] button').addClass('hidden')
     $.get('/games/'+game_id+'/load')
@@ -112,14 +112,8 @@ javascript:
       }
     }
     current_game_challenge_ids = challenge_ids
-    //displayChallengeCompletedConfetti()
     loadChallenge(current_game_challenge_ids[0])
   }
-  
-  //function displayChallengeCompletedConfetti(){
-  //  //TODO cool confetti
-  //  console.log('yay')
-  //}
   
   function displayChallengeCompletedConfettiForUser(session_hash){
     my_window = $("#code-main-wrapper[data-session-hash="+session_hash+"]")
@@ -147,4 +141,15 @@ javascript:
     else if (other_player_window.length > 0){
       alert('You lost. ' + player_name + ' won!')
     }
+  }
+  
+  //////////////////// GAME EFFECTS ////////////////////
+  function removePlayerEffects(){
+    //
+  }
+  
+  function clearMainCode(){
+    setTimeout(function() {
+      $('[ data-target=code-main-form-wrapper]').html('')
+    }, 1000)
   }
