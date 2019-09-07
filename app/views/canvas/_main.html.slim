@@ -1,0 +1,73 @@
+/ javascript:
+/   var canvas = document.getElementById('main-canvas');
+/ 	var ctx = canvas.getContext('2d');
+/ 	var width = canvas.width;
+/ 	var height = canvas.height;
+/ 	var cx = width / 2;
+/ 	var cy = height / 2;
+/ 	var points = [];
+/
+/ 	function generatePoints () {
+/ 		var data = [
+/ 			{ count: 90, position: 290, index: 0 },
+/ 			{ count: 90, position: 280, index: 0 },
+/ 			{ count: 90, position: 270, index: 0 },
+/ 			{ count: 70, position: 200, index: 1 },
+/ 		  { count: 70, position: 190, index: 1 },
+/ 		  { count: 70, position: 180, index: 1 },
+/ 			{ count: 50, position: 110, index: 2 },
+/ 		  { count: 50, position: 100, index: 2 },
+/ 		  { count: 30, position: 30,  index: 3 }
+/ 		];
+/
+/ 		for (var i = 0, len = data.length; i < len; ++i) {
+/ 			var item = data[i];
+/ 			for (var j = 0; j < item.count; ++j) {
+/ 				var speed = (Math.random() - 0.5) / 20;
+/ 				points.push({
+/ 					color: item.color,
+/ 					position: item.position,
+/ 					speed: speed,
+/ 					angle: Math.random() * 360,
+/ 					level: item.index
+/ 				});
+/ 			}
+/ 		}
+/ 	}
+/
+/ 	function draw () {
+/ 		ctx.globalCompositeOperation = "normal";
+/ 		ctx.rect(0, 0 , width, height);
+/ 		ctx.fillStyle = "#141a29";
+/ 		ctx.fill();
+/ 		ctx.globalAlpha = 0.05;
+/ 		ctx.globalCompositeOperation = "lighter";
+/
+/ 		for (var i = 0, len = points.length; i < len; ++i) {
+/ 		    var p0 = points[i];
+/ 		    p0.x = p0.position * Math.cos(p0.angle);
+/ 		    p0.y = p0.position * Math.sin(p0.angle);
+/ 		    p0.angle += p0.speed;
+/ 		    for (var j = 0; j < len; ++j) {
+/           var p1 = points[j];
+/           var d = Math.pow(p1.x - p0.x, 2) + Math.pow(p1.y - p0.y, 2);
+/
+/           if (p1.level - p0.level && d < 7000) {
+/             drawLine(p0, p1);
+/           }
+/ 		    }
+/ 		}
+/ 		requestAnimationFrame(draw);
+/ 	}
+/
+/ 	function drawLine (p0, p1) {
+/ 		ctx.beginPath();
+/ 		ctx.lineWidth = 0.4;
+/ 		ctx.moveTo(cx + p0.x, cy + p0.y);
+/ 		ctx.lineTo(cx + p1.x, cy + p1.y);
+/ 		ctx.strokeStyle = "#4F3762";
+/ 		ctx.stroke();
+/ 	}
+/
+/ 	generatePoints();
+/   draw();

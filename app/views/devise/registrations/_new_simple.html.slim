@@ -1,5 +1,5 @@
-h4 Log in as guest
+p Enter As Guest
 = form_tag new_guest_path do |f|
   label Name
-  = text_field_tag :name
-  = submit_tag 'Enter'
+  = text_field_tag :name, nil, required: true
+  = submit_tag 'Enter', class: 'button button0'

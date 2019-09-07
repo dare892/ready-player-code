@@ -1,4 +1,10 @@
-#profile-summary
-  = current_user.name
-  = current_user.win
-  = current_user.loss
+#profile-summary.main-card
+  = image_tag 'gif.gif', class: 'profile-background'
+  .profile-name = current_user.name
+  .profile-stats
+    .profile-wins = "W : #{current_user.win.to_i}"
+    .profile-wins.mar-lef20 = "L : #{current_user.loss.to_i}"
+
+  .mar-top10.text-centered
+    = link_to destroy_user_session_path, method: :delete do
+      .link Out

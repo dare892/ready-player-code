@@ -1,11 +1,21 @@
 #pages-index
-  - if current_user.nil?
-    h3 Welcome
-    = render partial: 'devise/registrations/new_simple'
-  - else
-    h3 = "Welcome, #{current_user.name}"
-    = link_to rooms_path do
-      div Multi Player
-    = link_to single_path do
-      div Single Player
-    
+  #wrap
+    #plane
+
+  .container
+    #login.main-card
+      - if current_user.nil?
+        h4 ReadyPlayerCode
+        = render partial: 'devise/registrations/new_simple'
+      - else
+        h4.mar-bot40 = "Welcome, #{current_user.name}"
+        = link_to rooms_path do
+          .button.button6 Multi Player
+        .button.button1 onclick="show_ajax_alert('Single Player mode coming soon.')" Single Player
+
+        .mar-top30
+          = link_to destroy_user_session_path, method: :delete do
+            .link Back
+
+        / = link_to single_path do
+        /   .button.button0 Single Player

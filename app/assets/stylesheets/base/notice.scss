@@ -1,0 +1,40 @@
+#notice-container{
+  width: 300px;
+  max-width: 86%;
+  height: auto;
+  position: fixed;
+  right: 20px;
+  top: 80px;
+  z-index: 10000;
+  opacity: 0.8;
+  .notice{
+    &.alert-info{
+      border: solid 2px $green;
+      color: white;
+      .close{
+        color: $green;
+      }
+    }
+    &.alert-danger{
+      border: solid 2px $purple;
+      color: white;
+      .close{
+        color: $purple;
+      }
+    }
+    position: relative;
+    background-color: $black;
+    padding: 13px 15px 10px;
+    padding-right: 30px;
+    width: 100%;
+    border-radius: 5px;
+    font-size: 14px;
+    .close{
+      font-size: 20px;
+      text-shadow: none;
+      &:active, &:visited,&:focus{
+        outline: none;
+      }
+    }
+  }
+}

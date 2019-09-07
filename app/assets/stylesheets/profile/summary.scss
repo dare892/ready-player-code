@@ -1,0 +1,26 @@
+#profile-summary{
+  background-color: black;
+  padding: 2px;
+  position: relative;
+  height: 310px;
+  width: 255px;
+  .profile-background{
+    width: calc(100% - 4px);
+    opacity: 0.8;
+    position: absolute;
+  }
+  .profile-name{
+    position: relative;
+    width: 200px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: transparent;
+    margin-top: 114px;
+  }
+  .profile-stats{
+    position: relative;
+    margin-top: 110px;
+    display: flex;
+    justify-content: center;
+  }
+}

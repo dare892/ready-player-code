@@ -1,19 +1,22 @@
-.container
-  .row
-    .col-sm-3
-      = render partial: "profile/summary"
+#wrap
+  #plane
 
+.container
+  #rooms-index
+    div
+      = render partial: "profile/summary"
       br
       button.btn-default onclick="$('#new-room-modal').modal('show')" New Room
 
-    .col-sm-9
-      #rooms-list-container
+    #right-side
+      #rooms-list-container.main-card
         = render partial: "rooms/rooms"
-        
-      = render partial: "profile/global_chat"
 
-= render partial: "rooms/new"
-= render partial: 'rooms/pin_enter'
+      #global-chat-container.main-card
+        = render partial: "profile/global_chat"
+
+  = render partial: "rooms/new"
+  = render partial: 'rooms/pin_enter'
 
 javascript:
   function showPinEnter(id){

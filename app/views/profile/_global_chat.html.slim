@@ -1,13 +1,12 @@
-#global-chat-container
-  h5 Chat
-  #global-chat-messages
-    - Message.where('room_id is null').order(:created_at).last(20).each do |message|
-      .chat-message = "#{message.user.try(:name) || ''} : #{message.body}"
+.card-label Chat
+#global-chat-messages
+  - Message.where('room_id is null').order(:created_at).last(20).each do |message|
+    .chat-message = "#{message.user.try(:name) || ''} : #{message.body}"
 
-  #global-chat-input-container
-    = form_for Message.new, remote: true, data: {target: 'chat-input'} do |f|
-      = f.text_field :body
-      .hidden 
-        = f.submit
+#global-chat-input-container
+  = form_for Message.new, remote: true, data: {target: 'chat-input'} do |f|
+    = f.text_field :body, placeholder: "Type a message..", autocomplete: 'off'
+    .hidden
+      = f.submit
 
 = render partial: "profile/main_cable"

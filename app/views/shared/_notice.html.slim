@@ -1,0 +1,40 @@
+#notice-container.hidden
+
+javascript:
+  function show_ajax_notification(content){
+    if($('#notice-container .notice').length > 1){
+      $('#notice-container .notice').first().slideUp(400)
+      window.setTimeout( function() {
+        $('#notice-container .notice').first().remove()
+      },400);
+    }
+    $('#notice-container').removeClass('hidden').append("<p class='notice in alert alert-info alert-dismissible'><button class='close' type='button' data-dismiss='alert'><i class='fas fa-times'></i></button>" + content + "</p>");
+    var this_thing = $('.alert-dismissible').find('.close');
+    window.setTimeout( function() {
+      this_thing.click();
+      window.setTimeout( function() {
+        if($('#notice-container').find('.alert-dismissible').length<1){
+          $('#notice-container').addClass('hidden')
+        }
+      },200);
+    },5000);
+  }
+
+  function show_ajax_alert(content){
+    if($('#notice-container .notice').length > 1){
+      $('#notice-container .notice').first().slideUp(400)
+      window.setTimeout( function() {
+        $('#notice-container .notice').first().remove()
+      },400);
+    }
+    $('#notice-container').removeClass('hidden').append("<p class='notice in alert alert-danger alert-dismissible'><button class='close' type='button' data-dismiss='alert'><i class='fas fa-times'></i></button>" + content + "</p>");
+    var this_thing = $('.alert-dismissible').find('.close');
+    window.setTimeout( function() {
+      this_thing.click();
+      window.setTimeout( function() {
+        if($('#notice-container').find('.alert-dismissible').length<1){
+          $('#notice-container').addClass('hidden')
+        }
+      },200);
+    },5000);
+  }

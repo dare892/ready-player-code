@@ -1,0 +1,14 @@
+doctype html
+html
+  head
+    title Readyplayercode
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    link href="https://fonts.googleapis.com/css?family=Orbitron&display=swap" rel="stylesheet"
+    script src="https://kit.fontawesome.com/94ee6ff87c.js"
+
+  body
+    .yield
+      = yield
+      = render partial: "shared/notice"

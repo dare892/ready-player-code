@@ -1,0 +1,35 @@
+#rooms-index{
+  padding-top: 50px;
+  display: flex;
+  flex-wrap: nowrap;
+  #right-side{
+    width: 100%;
+    padding: 0 20px;
+    #rooms-list-container{
+      padding: 20px;
+      height: calc(100vh - 270px);
+    }
+    #global-chat-container{
+      position: relative;
+      margin-top: 10px;
+      height: 200px;
+      padding-top: 20px;
+      #global-chat-messages{
+        padding: 0px 3px 3px 7px;
+        font-size: 12px;
+      }
+      #global-chat-input-container{
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        input{
+          width: 100%;
+          border-radius: 0 0 5px 5px;
+          border-bottom: none;
+          border-left: none;
+          border-right: none;
+        }
+      }
+    }
+  }
+}

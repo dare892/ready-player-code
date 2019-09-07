@@ -1,0 +1,39 @@
+@mixin button-mixin($background, $background-hover, $border, $border-hover, $text, $text-hover) {
+  background: $background;
+  color: $text;
+  border: 1px solid $border;
+  &:hover{
+    box-shadow: 0 0 10px $background-hover;
+    color: $text-hover;
+  }
+}
+
+.button{
+  outline: 0;
+  &:hover{
+    outline: 0;
+  }
+  border-radius: 5px;
+  display: inline-block;
+  text-align: center;
+  padding: 10px 20px 8px;
+  font-size: 13px;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  cursor: pointer;
+  &.button0{
+    @include button-mixin($green, $green-lt2, $green, $green, $black, $black);
+  }
+  &.button1{
+    @include button-mixin($black, $green, $green, $green, $green, white);
+  }
+  &.button5{
+    @include button-mixin($purple, $green-lt2, $purple, $purple, $black, $black);
+  }
+  &.button6{
+    @include button-mixin($black, $purple, $purple, $purple, $purple, white);
+  }
+  &.width-100{
+    width: 100% !important;
+  }
+}

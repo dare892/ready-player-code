@@ -1,0 +1,25 @@
+input[type=text]{
+  background-color: transparent;
+  border: solid 2px #55ded8;
+  border-radius: 5px;
+  height: 40px;
+  font-size: 14px;
+  color: white;
+  padding: 3px 10px;
+  box-shadow: 0 0 5px #0ff;
+  &:active, &:visited {
+    box-shadow: 0 0 5px #8feae6;
+    outline: none;
+  }
+  &:focus{
+    outline: none;
+    box-shadow: 0 0 7px #eeffff;
+  }
+}
+
+label{
+  font-size: 10px;
+  display: block;
+  margin-bottom: 2px;
+  text-align: left;
+}

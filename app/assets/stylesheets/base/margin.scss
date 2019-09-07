@@ -1,0 +1,35 @@
+@for $i from -100 through 100{
+  .mar#{$i}{
+    margin: #{$i}px !important;
+  }
+  .mar-top#{$i}{
+    margin-top: #{$i}px !important;
+  }
+  .mar-bot#{$i}{
+    margin-bottom: #{$i}px !important;
+  }
+  .mar-lef#{$i}{
+    margin-left: #{$i}px !important;
+  }
+  .mar-rig#{$i}{
+    margin-right: #{$i}px !important;
+  }
+  .pad#{$i}{
+    padding: #{$i}px !important;
+  }
+  .pad-rig#{$i}{
+    padding-right: #{$i}px !important;
+  }
+  .pad-lef#{$i}{
+    padding-left: #{$i}px !important;
+  }
+  .pad-bot#{$i}{
+    padding-bottom: #{$i}px !important;
+  }
+  .pad-top#{$i}{
+    padding-top: #{$i}px !important;
+  }
+  .top#{$i}{
+    top: #{$i}px !important;
+  }
+}
