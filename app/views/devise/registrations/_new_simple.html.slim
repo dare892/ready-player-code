@@ -1,5 +1,5 @@
 p Enter As Guest
 = form_tag new_guest_path do |f|
   label Name
-  = text_field_tag :name, nil, required: true
+  = text_field_tag :name, nil, required: true, autocomplete: 'off'
   = submit_tag 'Enter', class: 'button button0'

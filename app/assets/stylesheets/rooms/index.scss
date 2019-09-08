@@ -1,5 +1,5 @@
 #rooms-index{
-  padding-top: 50px;
+  padding-top: 30px;
   display: flex;
   flex-wrap: nowrap;
   #right-side{
@@ -20,6 +20,11 @@
       #global-chat-messages{
         padding: 0px 3px 3px 7px;
         font-size: 11px;
+        max-height: calc(100% - 44px);
+        overflow: auto;
+        .message-body{
+          color: white;
+        }
       }
       #global-chat-input-container{
         position: absolute;

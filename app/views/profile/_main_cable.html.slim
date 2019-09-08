@@ -18,29 +18,30 @@ javascript:
           console.log('received', data)
           da_t = data['data_type']
           if (da_t == 'user'){
-            
+
           }
           else if (da_t == 'chat'){
             displayMainChatMessage(data['sender_name'], data['chat_body'])
           }
           else if (da_t == 'game_status'){
-            
+
           }
           else if (da_t == 'in_game'){
-            
+
           }
         }
       }
     )
     hookMainChatInput()
+    scrollToMainChatBottom()
   })
 
   function enableMainChatInput(){
-  
+
   }
-  
+
   function disableMainChatInput(){
-  
+
   }
 
   function hookMainChatInput(){
@@ -55,7 +56,12 @@ javascript:
       }
     })
   }
-  
+
   function displayMainChatMessage(name, body){
-    $('#global-chat-messages').append("<div class='chat-message'>" + name +" : " + body + "</div>")
+    $('#global-chat-messages').append("<div class='chat-message'><span class='message-body'>" + name +" :</span><span> " + body + "</span></div>")
+    scrollToMainChatBottom()
+  }
+
+  function scrollToMainChatBottom(){
+    $("#global-chat-messages").scrollTop($("#global-chat-messages")[0].scrollHeight);
   }

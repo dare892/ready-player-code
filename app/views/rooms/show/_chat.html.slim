@@ -1,13 +1,15 @@
-#room-chat-container
-  h5 Chat
+#room-chat-container.main-card.position-relative
+  .card-label Chat
   #room-chat-messages
     - @room.messages.order(:created_at).each do |message|
       - display_name = message.user ? "#{message.user.name} : " : ''
-      .chat-message = "#{display_name} #{message.body}"
+      .chat-message
+        span.message-body = display_name
+        span = message.body
 
   #room-chat-input-container
     = form_for Message.new, remote: true, data: {target: 'chat-input'} do |f|
-      = f.text_field :body
-      .hidden 
+      = f.text_field :body, placeholder: 'Type a message...', autocomplete: 'off'
+      .hidden
         = f.number_field :room_id, value: @room.id
         = f.submit

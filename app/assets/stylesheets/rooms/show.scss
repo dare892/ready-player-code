@@ -1,0 +1,34 @@
+#rooms-show{
+  #rooms-show-controls{
+    padding: 20px;
+    label{
+      color: white;
+    }
+  }
+  #room-chat-container{
+    margin-top: 20px;
+    height: calc(100vh - 376px);
+    #room-chat-messages{
+      margin-top: 22px;
+      overflow: auto;
+      font-size: 11px;
+      padding: 0 7px;
+      height: calc(100vh - 444px);
+      .message-body{
+        color: white;
+      }
+    }
+    #room-chat-input-container{
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      input{
+        width: 100%;
+        border-radius: 0 0 5px 5px;
+        border-bottom: none;
+        border-left: none;
+        border-right: none;
+      }
+    }
+  }
+}

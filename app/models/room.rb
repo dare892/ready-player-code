@@ -11,6 +11,11 @@ class Room < ApplicationRecord
 
   validates_presence_of :language_id, :name
 
+  before_create do
+    self.mode = 'free_for_all'
+    self.difficulty = 'beginner'
+  end
+
   def host
     room_users.order(:created_at).first.user
   end

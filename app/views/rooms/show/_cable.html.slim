@@ -58,11 +58,13 @@ javascript:
       }
     )
     hookChatInput()
+    scrollToChatBottom()
   })
 
   //////////////////// CHATS ////////////////////
   function displayChatMessage(name, body){
-    $('#room-chat-messages').append("<div class='chat-message'>" + name + body + "</div>")
+    $('#room-chat-messages').append("<div class='chat-message'><span class='message-body'>" + name + "</span><span>" + body + "</span></div>")
+    scrollToChatBottom()
   }
 
   function disableChatInput(){
@@ -86,6 +88,10 @@ javascript:
     })
   }
 
+  function scrollToChatBottom(){
+    $("#room-chat-messages").scrollTop($("#room-chat-messages")[0].scrollHeight);
+  }
+
   //////////////////// GAME ////////////////////
   function startGame(game_id){
     $('[data-entity=start-game-btn] button').addClass('hidden')
@@ -97,16 +103,16 @@ javascript:
     current_game_challenge_ids = challenge_ids
     loadChallenge(current_game_challenge_ids[0])
   }
-  
+
   function loadChallenge(challenge_id){
     $.get("/challenges/"+challenge_id+"/load?game_id=" + current_game_id )
   }
-  
+
   function completedChallenge(challenge_id){
     challenge_ids = current_game_challenge_ids
-    for( var i = 0; i < challenge_ids.length; i++){ 
+    for( var i = 0; i < challenge_ids.length; i++){
       if ( challenge_ids[i] === challenge_id) {
-        challenge_ids.splice(i, 1); 
+        challenge_ids.splice(i, 1);
         i--;
         break;
       }
@@ -114,7 +120,7 @@ javascript:
     current_game_challenge_ids = challenge_ids
     loadChallenge(current_game_challenge_ids[0])
   }
-  
+
   function displayChallengeCompletedConfettiForUser(session_hash){
     my_window = $("#code-main-wrapper[data-session-hash="+session_hash+"]")
     other_player_window = $(".other-player[data-session-hash="+session_hash+"]")
@@ -131,7 +137,7 @@ javascript:
       }, 1000)
     }
   }
-  
+
   function displayGameCompletedConfettiForUser(session_hash, player_name){
     my_window = $("#code-main-wrapper[data-session-hash="+session_hash+"]")
     other_player_window = $(".other-player[data-session-hash="+session_hash+"]")
@@ -142,14 +148,14 @@ javascript:
       alert('You lost. ' + player_name + ' won!')
     }
   }
-  
+
   //////////////////// GAME EFFECTS ////////////////////
   function removePlayerEffects(){
     //
   }
-  
+
   function clearMainCode(){
     setTimeout(function() {
-      $('[ data-target=code-main-form-wrapper]').html('')
+      $('[data-target=code-main-form-wrapper]').html('')
     }, 1000)
   }

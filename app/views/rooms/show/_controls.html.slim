@@ -1,11 +1,16 @@
-#rooms-show-controls
+#rooms-show-controls.main-card
   h4 = @room.name
-  h5 = "Host: #{@room.host.name}"
+  label HOST
+  h6 = @room.host.name
   - if @room.pin
-  h5 = "Password: #{@room.pin}"
-  h5 = @room.language.name
-  h5 = @room.mode
-  h5 = @room.difficulty
+    label PIN
+    h6 = "Password: #{@room.pin}"
+  label LANGUAGE
+  h6 = @room.language.name
+  label MODE
+  h6 = @room.mode.gsub('_', ' ') if @room.mode
+  label DIFFICULTY
+  h6 = @room.difficulty
   - if @room.host == current_user
     #start-game-btn-wrapper data-entity="start-game-btn"
       = form_for @room, remote: true do |f|
@@ -14,11 +19,9 @@
           = text_field_tag :action_type, 'start_game'
         button.btn-default Start
 
-  = link_to room_user_path(@room_user), method: :delete, data: {confirm: 'Are you sure?'} do
-    button.btn-default Exit
+  .text-centered
+    = link_to room_user_path(@room_user), method: :delete, data: {confirm: 'Are you sure?'} do
+      | Exit
 
-  br
-  br
-  br
   / h3 Submit an answer
-  / = link_to 
+  / = link_to

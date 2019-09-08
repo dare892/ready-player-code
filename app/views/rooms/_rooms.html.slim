@@ -13,7 +13,7 @@
       .tr
         span.wid30 = room.name
         span.wid12 = room.language.name
-        span.wid12 = room.mode
+        span.wid12 = room.mode.gsub('_', ' ') if room.mode
         span.wid12 = room.difficulty
         span.wid12 = room.status
         span.wid8
