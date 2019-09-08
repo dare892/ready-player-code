@@ -95,7 +95,10 @@ javascript:
   //////////////////// GAME ////////////////////
   function startGame(game_id){
     $('[data-entity=start-game-btn] button').addClass('hidden')
-    $.get('/games/'+game_id+'/load')
+    displayGameCountdown()
+    setTimeout(function() {
+      $.get('/games/'+game_id+'/load')
+    }, 3500)
     current_game_id = game_id
   }
 
@@ -147,6 +150,7 @@ javascript:
     else if (other_player_window.length > 0){
       alert('You lost. ' + player_name + ' won!')
     }
+    resetGame()
   }
 
   //////////////////// GAME EFFECTS ////////////////////
@@ -154,8 +158,9 @@ javascript:
     //
   }
 
-  function clearMainCode(){
+  function resetGame(){
     setTimeout(function() {
-      $('[data-target=code-main-form-wrapper]').html('')
+      $('#code-challenge-container').html('').addClass('hidden')
+      $('#code-main-wrapper').html('')
     }, 1000)
   }

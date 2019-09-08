@@ -1,14 +1,20 @@
 #rooms-show-controls.main-card
-  h4 = @room.name
+  = link_to room_user_path(@room_user), method: :delete, data: {confirm: 'Are you sure?'} do
+    .exit.mar-bot10 Exit
+
+  h5 = @room.name
   label HOST
   h6 = @room.host.name
   - if @room.pin
     label PIN
     h6 = "Password: #{@room.pin}"
-  label LANGUAGE
-  h6 = @room.language.name
-  label MODE
-  h6 = @room.mode.gsub('_', ' ') if @room.mode
+  .row
+    .col-sm-6
+      label LANGUAGE
+      h6 = @room.language.name
+    .col-sm-6
+      label MODE
+      h6 = @room.mode.gsub('_', ' ') if @room.mode
   label DIFFICULTY
   h6 = @room.difficulty
   - if @room.host == current_user
@@ -17,11 +23,4 @@
         .hidden
           = f.text_field :status, value: 'playing'
           = text_field_tag :action_type, 'start_game'
-        button.btn-default Start
-
-  .text-centered
-    = link_to room_user_path(@room_user), method: :delete, data: {confirm: 'Are you sure?'} do
-      | Exit
-
-  / h3 Submit an answer
-  / = link_to
+        = f.submit 'START GAME', class: 'button button5'

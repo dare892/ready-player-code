@@ -1,3 +1,6 @@
+#wrap
+  #plane
+
 #rooms-show data-room-id="#{@room.id}"
   .container-fluid
     .row
@@ -7,9 +10,20 @@
         = render partial: "rooms/show/cable"
 
       .col-sm-9
-        #code-main-wrapper data-session-hash="#{current_user.session_hash}" style="border: solid gray 1px;min-height: 300px;"
+        #code-main-wrapper.main-card data-session-hash="#{current_user.session_hash}"
           / show/code_main
 
-        #other-players-wrapper style="display: flex;"
-          - @room.users.where.not(id: current_user.id).each do |player|
-            = render partial: 'rooms/show/player', locals: {player: player}
+        #other-players-container
+          #other-players-wrapper
+            - @room.users.where.not(id: current_user.id).each do |player|
+              = render partial: 'rooms/show/player', locals: {player: player}
+
+  #code-challenge-container.hidden
+  #countdown-wrapper
+    = render partial: "rooms/show/countdown_modal"
+
+
+/ javascript:
+/   var editor = ace.edit("editor");
+/   editor.setTheme("ace/theme/monokai");
+/   editor.session.setMode("ace/mode/javascript");

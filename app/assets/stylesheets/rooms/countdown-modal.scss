@@ -1,0 +1,49 @@
+#game-countdown-modal{
+  overflow: hidden;
+  .modal-dialog{
+    max-width: none;
+  }
+  .modal-content{
+    width: 100vw;
+    @include transition(all 0.05s);
+    overflow: hidden;
+    height: 250px;
+    padding: 0 !important;
+    background-color: #000000 !important;
+    position: relative;
+    margin-top: calc(50vh - 125px);
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+    margin-left: -100vh;
+    &.modal-in{
+      margin-left: 0;
+    }
+    &.modal-out{
+      margin-left: 100vw;
+    }
+  }
+  #countdown-tick-wrapper{
+    text-align: center;
+  }
+  #clock-img{
+    width: 250px;
+    margin-top: 28px;
+  }
+  #wave-img{
+    width: 100%;
+    position: absolute;
+    top: -50px;
+    left: 0;
+    opacity: 0.35;
+    height: auto;
+  }
+  #countdown-tick{
+    position: absolute;
+    font-size: 80px;
+    text-align: center;
+    width: 100%;
+    left: 0;
+    top: 70px;
+  }
+}

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   resources :responses
   resources :game_mappings
   resources :game_mapping_groups
@@ -28,15 +28,16 @@ Rails.application.routes.draw do
     end
   end
   resources :languages
-  
+
   devise_for :users, controllers: {
-    registrations: 'users/registrations'
+    registrations: 'users/registrations',
+    sessions: 'users/sessions'
   }
   devise_scope :user do
     post 'new_guest' => 'users/registrations#new_guest'
   end
 
-  
+
   get '/' => 'pages#index'
   get 'single' => 'pages#single'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

@@ -1,0 +1,32 @@
+.modal#game-countdown-modal
+  .modal-dialog
+    .modal-content
+      #countdown-tick-wrapper
+        = image_tag 'hole.gif', id: 'wave-img'
+        = image_tag 'clock.gif', id: 'clock-img'
+        #countdown-tick 3
+
+javascript:
+  function displayGameCountdown(){
+    $('#game-countdown-modal #countdown-tick').html('3')
+    $('#game-countdown-modal').modal('show')
+    $('#game-countdown-modal .modal-content').addClass('modal-in')
+    setTimeout(function() {
+      $('#game-countdown-modal #countdown-tick').html('2')
+    }, 1000)
+    setTimeout(function() {
+      $('#game-countdown-modal #countdown-tick').html('1')
+    }, 2000)
+    setTimeout(function() {
+      $('#game-countdown-modal #countdown-tick').html('0')
+    }, 3000)
+    setTimeout(function() {
+      $('#game-countdown-modal .modal-content').removeClass('modal-in')
+      $('#game-countdown-modal .modal-content').addClass('modal-out')
+    }, 3900)
+    setTimeout(function() {
+      $('#game-countdown-modal').modal('hide')
+      $('#game-countdown-modal .modal-content').removeClass('modal-out')
+    }, 4000)
+
+  }

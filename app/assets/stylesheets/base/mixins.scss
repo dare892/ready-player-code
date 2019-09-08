@@ -1,0 +1,22 @@
+@mixin transition($transition...) {
+  -moz-transition:    $transition;
+  -o-transition:      $transition;
+  -webkit-transition: $transition;
+  transition:         $transition;
+}
+
+@mixin xl {
+  @media (min-width:1500px) { @content; }
+}
+
+@mixin md {
+	@media (max-width:$screen-md-max) { @content; }
+}
+
+@mixin sm {
+	@media (max-width:$screen-sm-max) { @content; }
+}
+
+@mixin xs {
+  @media (max-width:$screen-xs-max) { @content; }
+}

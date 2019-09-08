@@ -27,17 +27,18 @@ class ResponsesController < ApplicationController
     @response = Response.new(response_params)
     # handle docker processing here
     @result = 'pass'
-    
+
     respond_to do |format|
       if @response.save
         if @result == 'pass'
           if @response.challenge_game.game.completed_all_challenges(current_user)
             @response.room.emit({'data_type':'in_game', 'message':'completed_game', 'session_hash':current_user.session_hash})
             @response.room.update(status: 'pending')
-            current_user.earn_points(100)
+            current_user.earn_points('game')
+            msg = @response.room.messages.create(body: "#{current_user.name} has won the game!")
             format.js { render "games/completed.js.erb"}
           else
-            current_user.earn_points(10)
+            current_user.earn_points('challenge')
             @response.room.emit({'data_type':'in_game', 'message':'completed_challenge', 'session_hash':current_user.session_hash, 'player_name':current_user.name})
             format.js { render "responses/success.js.erb"}
           end
@@ -48,7 +49,7 @@ class ResponsesController < ApplicationController
         format.js { render "shared/failed.js.erb"}
       end
     end
-      
+
   end
 
   # PATCH/PUT /responses/1

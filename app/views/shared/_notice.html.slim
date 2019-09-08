@@ -38,3 +38,11 @@ javascript:
       },200);
     },5000);
   }
+
+
+- if notice.present?
+  javascript:
+    show_ajax_notification('#{j(notice)}');
+- elsif alert.present?
+  javascript:
+    show_ajax_alert('#{j(alert)}');

@@ -1,3 +1,8 @@
-.other-player data-session-hash="#{player.session_hash}" style="border: solid green 1px;width: 200px;height: 300px;"
-  .other-player-name = player.name
+.other-player data-session-hash="#{player.session_hash}"
+  .other-player-name-wrapper
+    .hex
+      .hex1
+      .hex2
+      .hex3
+    .other-player-name = player.name[0,4].upcase
   .other-player-box

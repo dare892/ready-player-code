@@ -12,9 +12,8 @@ body{
   background-image: radial-gradient(#3a9490 -50%, black 58%);
   background-repeat: no-repeat;
 
-  color: #55ded8;
-  text-shadow: 1px 1px 10px #a4e6e4;
   font-family: 'Orbitron', sans-serif;
+  @extend .text-0;
 }
 
 .logo{
@@ -25,24 +24,10 @@ body{
 .hidden{
   display: none;
 }
-.highlighted{
-  border: solid purple 5px !important;
-}
-.text-centered{
-  text-align: center;
-}
 .relative-position{
   position: relative;
 }
-a{
-  color: white !important;
-  text-decoration: underline !important;
-  font-size: 11px;
-  cursor: pointer;
-  &:hover{
-    color: $purple;
-  }
-}
+
 //
 // #main-canvas {
 //   width: 600px;

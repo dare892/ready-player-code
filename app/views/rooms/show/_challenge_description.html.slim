@@ -1,0 +1,15 @@
+#code-main-title = @challenge.title
+#code-main-description
+  label Description
+  p = @challenge.description
+
+#code-main-answers.mar-top25
+  label Examples
+  .fake-table
+    .thead
+      span.wid50 Input
+      span.wid50 Outut
+    - @challenge.challenge_answers.each do |ans|
+      .tr
+        span.wid50 = ans.input
+        span.wid50 = ans.output

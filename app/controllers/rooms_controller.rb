@@ -1,5 +1,6 @@
 class RoomsController < ApplicationController
   before_action :set_room, only: [:show, :edit, :update, :destroy, :pin_enter]
+  access :user => :all
 
   def index
     current_user.room_users.destroy_all

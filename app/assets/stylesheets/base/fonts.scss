@@ -1,0 +1,24 @@
+.highlighted{
+  border: solid purple 5px !important;
+}
+.text-centered{
+  text-align: center;
+}
+a{
+  color: white !important;
+  text-decoration: underline !important;
+  font-size: 11px;
+  cursor: pointer;
+  &:hover{
+    color: $purple;
+  }
+}
+
+.text-0{
+  color: #55ded8;
+  text-shadow: 1px 1px 10px #a4e6e4;
+}
+.text-1{
+  color: $purple;
+  text-shadow: 1px 1px 10px $purple;
+}

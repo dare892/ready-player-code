@@ -7,6 +7,7 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     link href="https://fonts.googleapis.com/css?family=Orbitron&display=swap" rel="stylesheet"
     script src="https://kit.fontawesome.com/94ee6ff87c.js"
+    script src="https://pagecdn.io/lib/ace/1.4.5/ace.js" integrity="sha256-5Xkhn3k/1rbXB+Q/DX/2RuAtaB4dRRyQvMs83prFjpM=" crossorigin="anonymous"
 
   body
     - if !(action_name == 'index' && controller_name == 'pages')
@@ -15,3 +16,5 @@ html
     .yield
       = yield
       = render partial: "shared/notice"
+
+    #modal-wrapper
