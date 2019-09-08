@@ -33,7 +33,29 @@
   &.button6{
     @include button-mixin($black, $purple, $purple, $purple, $purple, white);
   }
-  &.width-100{
+  &.width100{
     width: 100% !important;
+  }
+}
+
+.pill-buttons{
+  span{
+    font-size: 11px;
+    cursor: pointer;
+    &:hover, &.selected{
+      background-color: $green;
+      color: white;
+    }
+  }
+  span:first-child{
+    padding: 8px 10px 6px 13px;
+    border-radius: 7px 0 0 7px;
+    border: solid $green 2px;
+  }
+  span:last-child{
+    padding: 8px 10px 6px 13px;
+    border-radius: 0 7px 7px 0;
+    border: solid $green 2px;
+    border-left: 0;
   }
 }

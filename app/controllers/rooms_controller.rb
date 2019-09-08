@@ -75,7 +75,7 @@ class RoomsController < ApplicationController
       @alert = "Wrong Password"
     end
   end
-  
+
   def load_other_player
     respond_to do |format|
       @player = User.find_by(session_hash: params[:session_hash])

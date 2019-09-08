@@ -1,25 +1,28 @@
-table
-  thead
-    tr
-      th Name
-      th Language
-      th Mode
-      th Difficulty
-      th Status
-      th
-      th
+.fake-table
+  .thead
+    span.wid30 Name
+    span.wid12 Language
+    span.wid12 Mode
+    span.wid12 Difficulty
+    span.wid12 Status
+    span.wid8
+    span.wid10
 
-  tbody
+  .tbody
     - @rooms.each do |room|
-      tr
-        td = room.name
-        td = room.language.name
-        td = room.mode
-        td = room.difficulty
-        td = room.status
-        td = 'locked' if room.pin.present?
-        td
+      .tr
+        span.wid30 = room.name
+        span.wid12 = room.language.name
+        span.wid12 = room.mode
+        span.wid12 = room.difficulty
+        span.wid12 = room.status
+        span.wid8
           - if room.pin.present?
-            span onclick="showPinEnter(#{room.id})" Enter
-          - else
-            = link_to 'Enter', room
+            i class="fas fa-lock"
+
+        span.wid10
+          - if room.status == 'pending'
+            - if room.pin.present?
+              a onclick="showPinEnter(#{room.id})" Enter
+            - else
+              = link_to 'Enter', room

@@ -6,8 +6,11 @@
     width: 100%;
     padding: 0 20px;
     #rooms-list-container{
-      padding: 20px;
+      padding: 20px 8px;
       height: calc(100vh - 270px);
+      table{
+        width: 100%;
+      }
     }
     #global-chat-container{
       position: relative;
@@ -16,7 +19,7 @@
       padding-top: 20px;
       #global-chat-messages{
         padding: 0px 3px 3px 7px;
-        font-size: 12px;
+        font-size: 11px;
       }
       #global-chat-input-container{
         position: absolute;
@@ -31,5 +34,12 @@
         }
       }
     }
+  }
+}
+
+.fake-table{
+  .tbody{
+    height: calc(100vh - 315px);
+    overflow: auto;
   }
 }

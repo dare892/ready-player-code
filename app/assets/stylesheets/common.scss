@@ -26,6 +26,18 @@ body{
 .text-centered{
   text-align: center;
 }
+.relative-position{
+  position: relative;
+}
+a{
+  color: white !important;
+  text-decoration: underline !important;
+  font-size: 11px;
+  cursor: pointer;
+  &:hover{
+    color: $purple;
+  }
+}
 //
 // #main-canvas {
 //   width: 600px;
@@ -35,10 +47,3 @@ body{
 //   left: 50%;
 //   margin: -300px 0 0 -300px;
 // }
-
-.link{
-  color: white;
-  font-size: 11px;
-  text-decoration: underline;
-  cursor: pointer;
-}

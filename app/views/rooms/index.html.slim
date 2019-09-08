@@ -5,12 +5,13 @@
   #rooms-index
     div
       = render partial: "profile/summary"
-      br
-      button.btn-default onclick="$('#new-room-modal').modal('show')" New Room
+      .button.button6.width100.mar-top18 onclick="$('#new-room-modal').modal('show')" CREATE NEW GAME
 
     #right-side
-      #rooms-list-container.main-card
-        = render partial: "rooms/rooms"
+      .main-card.position-relative
+        .card-label Games
+        #rooms-list-container
+          = render partial: "rooms/rooms"
 
       #global-chat-container.main-card
         = render partial: "profile/global_chat"

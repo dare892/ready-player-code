@@ -1,19 +1,34 @@
 - @room ||= Room.new
 = form_for @room do |f|
-  - if @room.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@room.errors.count, "error")} prohibited this room from being saved:"
-      ul
-        - @room.errors.full_messages.each do |message|
-          li = message
-
-  .field
+  .field.mar-top40
     = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :pin
-    = f.text_field :pin
+    = f.text_field :name, autocomplete: 'off'
   .field
     = f.label :language
     = f.select :language_id, options_from_collection_for_select(Language.published, 'id', 'name')
-  .actions = f.submit
+
+  .field.pill-buttons
+    span.selected onclick="togglePin('')" Public
+    span onclick="togglePin('private')" Private
+
+  .field.mar-top30.mar-bot-10.hidden data-target="pin-fields"
+    = f.label :pin
+    = f.text_field :pin, autocomplete: 'off'
+  .actions.mar-top40 = f.submit 'CREATE', class: 'button button6'
+
+javascript:
+  function togglePin(mode){
+    if(mode == 'private'){
+      $('#new-room-modal .pill-buttons').find('span').toggleClass('selected');
+      $('#new-room-modal form').find('[data-target=pin-fields]').removeClass('hidden')
+    }
+    else{
+      $('#new-room-modal .pill-buttons').find('span').toggleClass('selected');
+      $('#new-room-modal form').find('[data-target=pin-fields]').addClass('hidden')
+      $('#new-room-modal #room_pin').val('')
+    }
+  }
+
+  $(document).ready(function() {
+    $('select').niceSelect();
+  });
