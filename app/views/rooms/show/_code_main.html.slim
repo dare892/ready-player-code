@@ -1,8 +1,35 @@
 #code-main
   #code-main-form-wrapper data-target='code-main-form-wrapper'
-    = form_for Response.new, remote: true do |f|
-      = f.text_area :body, placeholder: 'Submit answer'
-      .hidden
-        = f.text_field :challenge_game_id, value: @challenge_game.id
-        = f.text_field :user_id, value: current_user.id
-      = f.submit
+    #editor
+
+= form_for Response.new, remote: true do |f|
+  .hidden
+    = f.text_area :body, placeholder: 'Submit answer'
+    = f.text_field :challenge_game_id, value: @challenge_game.id
+    = f.text_field :user_id, value: current_user.id
+    = f.submit 'CHECK ANSWER', class: 'button button6 submit-answer-btn'
+
+javascript:
+  var editor = ace.edit("editor");
+  editor.setTheme("ace/theme/gob");
+  editor.session.setMode("ace/mode/javascript");
+
+  $(document).ready(function(){
+    editor.session.on('change', function(delta) {
+      $('#response_body').val(editor.getValue());
+    });
+  })
+
+css:
+  #code-main{
+
+  }
+  #code-main-wrapper{
+    position: relative;
+    overflow: scroll;
+  }
+  #editor{
+    width: calc(100% - 2px);
+    margin: 1px;
+    height: 1500px;
+  }

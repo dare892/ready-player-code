@@ -54,6 +54,7 @@ class User < ApplicationRecord
     when 'game'
       pts = 100
     end
-    self.update(points: self.points.to_i + pts)
+    self.points = self.points.to_i + pts
+    self.save(validate: false)
   end
 end

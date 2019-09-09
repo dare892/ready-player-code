@@ -10,8 +10,11 @@
         = render partial: "rooms/show/cable"
 
       .col-sm-9
-        #code-main-wrapper.main-card data-session-hash="#{current_user.session_hash}"
-          / show/code_main
+        #code-main-outer-wrapper.relative-position
+          #code-main-wrapper.main-card data-session-hash="#{current_user.session_hash}"
+            / show/code_main
+
+          #code-main-fake-button.button.button6.hidden onclick="$('#code-main-wrapper form input[type=submit]').click();" SUBMIT
 
         #other-players-container
           #other-players-wrapper
@@ -31,8 +34,3 @@
 
   #countdown-wrapper
     = render partial: "rooms/show/countdown_modal"
-
-/ javascript:
-/   var editor = ace.edit("editor");
-/   editor.setTheme("ace/theme/monokai");
-/   editor.session.setMode("ace/mode/javascript");

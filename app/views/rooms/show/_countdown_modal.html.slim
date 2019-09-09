@@ -1,4 +1,4 @@
-.modal#game-countdown-modal
+.modal#game-countdown-modal data-backdrop="static"
   .modal-dialog
     .modal-content
       #countdown-tick-wrapper
@@ -7,7 +7,7 @@
         #countdown-tick 3
 
 javascript:
-  function displayGameCountdown(){
+  function myplayer_displayGameCountdown(){
     $('#game-countdown-modal #countdown-tick').html('3')
     $('#game-countdown-modal').modal('show')
     $('#game-countdown-modal .modal-content').addClass('modal-in')

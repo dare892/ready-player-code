@@ -66,8 +66,8 @@
       height: 200px;
       border: 2px solid #81b7b7;
       border-radius: 5px;
-      background-color: #375252;
-      background-image: radial-gradient(#71a5a2 -50%, black 58%);
+      // background-color: #375252;
+      // background-image: radial-gradient(#71a5a2 -50%, black 58%);
       position: relative;
       padding: 0 10px;
       .other-player-name-wrapper{
@@ -106,6 +106,16 @@
         top: 60px;
         font-size: 20px;
         color: #90bdbc;
+      }
+      .progress-container{
+        height: 10px;
+        position: relative;
+        top: 6px;
+        width: calc(100% - 18px);
+        border-width: 1px;
+        .progress-bar{
+
+        }
       }
     }
   }

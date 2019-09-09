@@ -42,16 +42,16 @@ javascript:
           else if (da_t == 'game_status'){
             mg = data['message']
             if(mg == 'start_game'){
-              startGame(data['game_id'])
+              myplayer_startGame(data['game_id'])
             }
           }
           else if (da_t == 'in_game'){
             mg = data['message']
             if(mg == 'completed_challenge'){
-              displayChallengeCompletedConfettiForUser(data['session_hash'])
+              anyplayer_displayChallengeCompletedConfetti(data['session_hash'])
             }
             else if(mg == 'completed_game'){
-              displayGameCompletedConfettiForUser(data['session_hash'], data['player_name'])
+              anyplayer_displayGameCompletedConfetti(data['session_hash'], data['player_name'])
             }
           }
         }
@@ -93,38 +93,39 @@ javascript:
   }
 
   //////////////////// GAME ////////////////////
-  function startGame(game_id){
+  function myplayer_startGame(game_id){
     $('[data-entity=start-game-btn] button').addClass('hidden')
-    displayGameCountdown()
+    myplayer_displayGameCountdown()
+    otherplayers_displayProgressBar()
     setTimeout(function() {
       $.get('/games/'+game_id+'/load')
     }, 3500)
     current_game_id = game_id
   }
 
-  function loadChallenges(challenge_ids){
+  function myplayer_loadChallenges(challenge_ids){
     current_game_challenge_ids = challenge_ids
-    loadChallenge(current_game_challenge_ids[0])
-    loadChallengeTicker(challenge_ids.length)
+    myplayer_loadChallenge(current_game_challenge_ids[0])
+    myplayer_loadChallengeTicker(challenge_ids.length)
   }
 
-  function loadChallenge(challenge_id){
+  function myplayer_loadChallenge(challenge_id){
     $.get("/challenges/"+challenge_id+"/load?game_id=" + current_game_id )
   }
 
-  function loadChallengeTicker(challege_count){
+  function myplayer_loadChallengeTicker(challege_count){
     $('#game-ticker-count [data-completed-count]').html('1')
     $('#game-ticker-count [data-total-count]').html(challege_count)
     $('#code-game-ticker-container .progress-bar').css('width', 0)
   }
 
-  function increaseChallengeTicker(){
+  function myplayer_increaseChallengeTicker(){
     $('#game-ticker-count [data-completed-count]').html(parseInt($('#game-ticker-count [data-completed-count]').html()) + 1)
     progess_percentage = (parseFloat($('#game-ticker-count [data-completed-count]').html()) - 1)/parseFloat($('#game-ticker-count [data-total-count]').html())
     $('#code-game-ticker-container .progress-bar').css('width', (progess_percentage*100)+'%')
   }
 
-  function completedChallenge(challenge_id){
+  function myplayer_completedChallenge(challenge_id){
     challenge_ids = current_game_challenge_ids
     for( var i = 0; i < challenge_ids.length; i++){
       if ( challenge_ids[i] === challenge_id) {
@@ -133,12 +134,19 @@ javascript:
         break;
       }
     }
-    increaseChallengeTicker()
+    myplayer_increaseChallengeTicker()
     current_game_challenge_ids = challenge_ids
-    loadChallenge(current_game_challenge_ids[0])
+    myplayer_loadChallenge(current_game_challenge_ids[0])
   }
 
-  function displayChallengeCompletedConfettiForUser(session_hash){
+  function otherplayers_displayProgressBar(){
+    $('.other-player .progress-container .progress-bar').each(function(){
+      $(this).css('width',0)
+    })
+    $('.other-player .progress-container').removeClass('hidden')
+  }
+
+  function anyplayer_displayChallengeCompletedConfetti(session_hash){
     my_window = $("#code-main-wrapper[data-session-hash="+session_hash+"]")
     other_player_window = $(".other-player[data-session-hash="+session_hash+"]")
     if(my_window.length > 0){
@@ -152,10 +160,20 @@ javascript:
       setTimeout(function() {
         other_player_window.removeClass('highlighted')
       }, 1000)
+
+      otherplayer_increaseChallengeTicker(session_hash)
+      otherplayer_highlightDiv(session_hash)
     }
   }
 
-  function displayGameCompletedConfettiForUser(session_hash, player_name){
+  function otherplayer_highlightDiv(session_hash){
+    $(".other-player[data-session-hash="+session_hash+"]").addClass('highlight-div')
+    setTimeout(function(){
+      $(".other-player[data-session-hash="+session_hash+"]").removeClass('highlight-div')
+    }, 400)
+  }
+
+  function anyplayer_displayGameCompletedConfetti(session_hash, player_name){
     my_window = $("#code-main-wrapper[data-session-hash="+session_hash+"]")
     other_player_window = $(".other-player[data-session-hash="+session_hash+"]")
     if(my_window.length > 0){
@@ -168,14 +186,30 @@ javascript:
     resetGame()
   }
 
+  function otherplayer_increaseChallengeTicker(session_hash){
+    wrapper = $('.other-player[data-session-hash='+session_hash+']')
+    challenges_count = parseFloat($('#game-ticker-count [data-total-count]').html())
+    challenges_new_count_for_player = parseFloat(wrapper.find('.progress-container').attr('data-currently-completed')) + 1
+    wrapper.find('.progress-container').attr('data-currently-completed',challenges_new_count_for_player)
+    $(wrapper).find('.progress-bar').css('width',((challenges_new_count_for_player/challenges_count)*100)+'%')
+  }
+
   //////////////////// GAME EFFECTS ////////////////////
-  function removePlayerEffects(){
-    //
+  function myplayer_resetUI(){
+    $('#code-challenge-container').html('').addClass('hidden')
+    $('#code-main-wrapper').html('')
+  }
+  function otherplayers_resetUI(){
+    $('.other-player .progress-container').each(function(){
+      $(this).find('.progress-bar').css('width',0)
+      $(this).attr('data-currently-completed',0)
+    })
+    $('.other-player .progress-container').addClass('hidden')
   }
 
   function resetGame(){
-    setTimeout(function() {
-      $('#code-challenge-container').html('').addClass('hidden')
-      $('#code-main-wrapper').html('')
-    }, 1000)
+    setTimeout(function(){
+      myplayer_resetUI()
+      otherplayers_resetUI()
+    }, 2000)
   }
