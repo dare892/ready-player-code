@@ -13,6 +13,7 @@ class User < ApplicationRecord
 
   has_many :room_users, dependent: :destroy
   has_many :responses, dependent: :destroy
+  has_many :game_results
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 

@@ -1,0 +1,54 @@
+#game-results-modal{
+  .modal-content{
+    width: 500px;
+    position: relative;
+    background-color: $black;
+  }
+  #game-results-header{
+    h2{
+      color: $purple
+      text-shadow: 2px 2px $purple;
+    }
+    img{
+      position: absolute;
+      width: 100%;
+      opacity: 0.4;
+      left: 0;
+      top: 0;
+    }
+  }
+  #game-results-table{
+    .thead{
+      text-shadow: 2px 2px white;
+      color: white;
+      font-size: 14px;
+    }
+    .game-result{
+      border-bottom: 1px solid $green;
+      .game-result-name{
+        text-shadow: 2px 2px white;
+        color: white;
+        font-size: 14px;
+      }
+      .game-result-status{
+        text-shadow: 2px 2px $green-lt;
+        color: $green-lt;
+        font-size: 20px;
+      }
+      .game-result-challenges{
+        text-shadow: 2px 2px white;
+        color: white;
+        font-size: 14px;
+      }
+    }
+    .losers{
+      .game-result{
+        border-bottom: 1px solid #cf193d;
+        .game-result-status{
+          text-shadow: 2px 2px #cf193d;
+          color: #cf193d;
+        }
+      }
+    }
+  }
+}

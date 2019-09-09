@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190908160043) do
+ActiveRecord::Schema.define(version: 20190909221256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,16 @@ ActiveRecord::Schema.define(version: 20190908160043) do
     t.datetime "updated_at", null: false
     t.index ["challenge_id"], name: "index_game_mappings_on_challenge_id"
     t.index ["game_mapping_group_id"], name: "index_game_mappings_on_game_mapping_group_id"
+  end
+
+  create_table "game_results", force: :cascade do |t|
+    t.bigint "game_id"
+    t.bigint "user_id"
+    t.integer "result"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_game_results_on_game_id"
+    t.index ["user_id"], name: "index_game_results_on_user_id"
   end
 
   create_table "games", force: :cascade do |t|
@@ -130,7 +140,6 @@ ActiveRecord::Schema.define(version: 20190908160043) do
     t.string "session_hash"
     t.integer "win"
     t.integer "loss"
-    t.integer "points"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "roles"

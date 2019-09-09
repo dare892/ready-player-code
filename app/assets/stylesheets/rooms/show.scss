@@ -48,6 +48,8 @@
 
   #code-main-wrapper{
     height: calc(100vh - 256px);
+    position: relative;
+    overflow: scroll;
   }
 
   #other-players-container{
