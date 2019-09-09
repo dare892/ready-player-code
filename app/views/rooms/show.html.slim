@@ -19,9 +19,18 @@
               = render partial: 'rooms/show/player', locals: {player: player}
 
   #code-challenge-container.hidden
+    #code-game-ticker-container
+      #game-ticker-count
+        span data-completed-count=""
+        span = "/"
+        span data-total-count=""
+      .progress-container
+        .progress-bar
+
+    #code-challenge-description-container
+
   #countdown-wrapper
     = render partial: "rooms/show/countdown_modal"
-
 
 / javascript:
 /   var editor = ace.edit("editor");

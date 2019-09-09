@@ -28,7 +28,7 @@
     @include button-mixin($black, $green, $green, $green, $green, white);
   }
   &.button5{
-    @include button-mixin($purple, $green-lt2, $purple, $purple, $black, $black);
+    @include button-mixin($purple, $purple-lt1, $purple, $purple, $black, $black);
   }
   &.button6{
     @include button-mixin($black, $purple, $purple, $purple, $purple, white);

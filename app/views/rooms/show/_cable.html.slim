@@ -105,10 +105,23 @@ javascript:
   function loadChallenges(challenge_ids){
     current_game_challenge_ids = challenge_ids
     loadChallenge(current_game_challenge_ids[0])
+    loadChallengeTicker(challenge_ids.length)
   }
 
   function loadChallenge(challenge_id){
     $.get("/challenges/"+challenge_id+"/load?game_id=" + current_game_id )
+  }
+
+  function loadChallengeTicker(challege_count){
+    $('#game-ticker-count [data-completed-count]').html('1')
+    $('#game-ticker-count [data-total-count]').html(challege_count)
+    $('#code-game-ticker-container .progress-bar').css('width', 0)
+  }
+
+  function increaseChallengeTicker(){
+    $('#game-ticker-count [data-completed-count]').html(parseInt($('#game-ticker-count [data-completed-count]').html()) + 1)
+    progess_percentage = (parseFloat($('#game-ticker-count [data-completed-count]').html()) - 1)/parseFloat($('#game-ticker-count [data-total-count]').html())
+    $('#code-game-ticker-container .progress-bar').css('width', (progess_percentage*100)+'%')
   }
 
   function completedChallenge(challenge_id){
@@ -120,6 +133,7 @@ javascript:
         break;
       }
     }
+    increaseChallengeTicker()
     current_game_challenge_ids = challenge_ids
     loadChallenge(current_game_challenge_ids[0])
   }
@@ -145,6 +159,7 @@ javascript:
     my_window = $("#code-main-wrapper[data-session-hash="+session_hash+"]")
     other_player_window = $(".other-player[data-session-hash="+session_hash+"]")
     if(my_window.length > 0){
+      $('#code-game-ticker-container .progress-bar').css('width', '100%')
       alert('You won!')
     }
     else if (other_player_window.length > 0){
