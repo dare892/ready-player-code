@@ -3,8 +3,10 @@ class RoomsController < ApplicationController
   access :user => :all
 
   def index
-    current_user.room_users.destroy_all
-    @rooms = Room.all.order(created_at: :desc)
+    if request.format.html?
+      current_user.room_users.destroy_all
+    end
+    @rooms = Room.all.order(created_at: :desc).limit(200)
   end
 
   def show
@@ -32,9 +34,9 @@ class RoomsController < ApplicationController
 
   def create
     @room = Room.new(room_params.merge(status: 'pending'))
-
     respond_to do |format|
       if @room.save
+        current_user.emit({'data_type':'room'})
         format.html { redirect_to @room, notice: 'Room was successfully created.' }
         format.json { render :show, status: :created, location: @room }
       else

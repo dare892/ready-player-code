@@ -27,7 +27,11 @@ javascript:
   var rooms_timer;
   var refresh_rooms = true
   var rooms_timer = setInterval(function(){
-    if(refresh_rooms && $('#rooms-list-container').length > 0){
-      $.get('/rooms')
-    }
+    refreshRoom()
   }, 10000);
+
+  function refreshRoom(){
+    if(refresh_rooms && $('#rooms-list-container').length > 0){
+      $.get('/rooms.js')
+    }
+  }

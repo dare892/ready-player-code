@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20190909221256) do
     t.bigint "challenge_id"
     t.text "input"
     t.text "output"
+    t.boolean "is_test", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["challenge_id"], name: "index_challenge_answers_on_challenge_id"
@@ -140,6 +141,7 @@ ActiveRecord::Schema.define(version: 20190909221256) do
     t.string "session_hash"
     t.integer "win"
     t.integer "loss"
+    t.integer "points"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "roles"

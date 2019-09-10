@@ -43,6 +43,9 @@ class User < ApplicationRecord
         data_type: 'chat',
         sender_name: user.try(:name),
         chat_body: message.body
+    when 'room'
+      ActionCable.server.broadcast "main_channel",
+        data_type: 'room'
     end
   end
 

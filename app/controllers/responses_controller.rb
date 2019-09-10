@@ -18,14 +18,15 @@ class ResponsesController < ApplicationController
   def create
     @response = Response.new(response_params)
     result = @response.challenge_game.challenge.check_answer(response_params[:body])
+    @game = @response.challenge_game.game
 
     respond_to do |format|
       if result == 'pass'
         if @response.save
-          if @response.challenge_game.game.completed_all_challenges(current_user)
+          if @game.completed_all_challenges(current_user)
             @response.room.emit({'data_type':'in_game', 'message':'completed_game', 'session_hash':current_user.session_hash})
             @response.room.update(status: 'pending')
-            @reponse.challenge_game.game.win(current_user)
+            @game.win(current_user)
             msg = @response.room.messages.create(body: "#{current_user.name} has won the game!")
             format.js { render "games/completed.js.erb"}
           else
