@@ -29,18 +29,18 @@ languages.each do |language|
   # end
 end
 
-(1..2).each do |n|
-  GameMappingGroup.difficulties.keys.each do |difficulty|
-    @gmg = GameMappingGroup.create(difficulty: difficulty, language: Language.first)
-    challenges = Challenge.where(difficulty: difficulty)
-    (0..2).each do |num|
-      @gmg.game_mappings.create(
-        challenge: challenges[num],
-        sort: num
-      )
-    end
-  end
-end
+# (1..2).each do |n|
+#   GameMappingGroup.difficulties.keys.each do |difficulty|
+#     @gmg = GameMappingGroup.create(difficulty: difficulty, language: Language.first)
+#     challenges = Challenge.where(difficulty: difficulty)
+#     (0..2).each do |num|
+#       @gmg.game_mappings.create(
+#         challenge: challenges[num],
+#         sort: num
+#       )
+#     end
+#   end
+# end
 
 Rake::Task['db:challenges'].invoke
 

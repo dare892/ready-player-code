@@ -126,6 +126,21 @@ namespace :db do
                 is_test: true
               }
             ]
+          },
+          {
+            title: 'Kaprekars Constant',
+            description: "Have the function KaprekarsConstant(num) take the num parameter being passed which will be a 4-digit number with at least two distinct digits. Your program should perform the following routine on the number: Arrange the digits in descending order and in ascending order (adding zeroes to fit it to a 4-digit number), and subtract the smaller number from the bigger number. Then repeat the previous step. Performing this routine will always cause you to reach a fixed number: 6174. Then performing the routine on 6174 will always give you 6174 (7641 - 1467 = 6174). Your program should return the number of times this routine must be performed until 6174 is reached. For example: if num is 3524 your program should return 3 because of the following steps: (1) 5432 - 2345 = 3087, (2) 8730 - 0378 = 8352, (3) 8532 - 2358 = 6174.",
+            answers: [
+              {
+                input: '2111',
+                output: '5'
+              },
+              {
+                input: '9831',
+                output: '7',
+                is_test: true
+              }
+            ]
           }
         ]
       }
@@ -134,7 +149,7 @@ namespace :db do
     challenges.each do |lang, dif|
       @lang = Language.find_or_create_by(name: lang)
       dif.each do |difficulty, challenges|
-        challenges.each do |challenge|
+        challenges.each_with_index do |challenge, index|
           @cha = Challenge.new(language: @lang, difficulty: difficulty, title: challenge[:title], description: challenge[:description])
           if @cha.save
             challenge[:answers].each do |answer|
@@ -142,7 +157,14 @@ namespace :db do
             end
           else
             puts ">>>>>>>>>>ERROR"
-            puts @cha.errors.full_messages.join(",")
+            puts cha.errors.full_messages.join(",")
+          end
+        end
+        
+        (1..3).each do |num|
+          @gmg = GameMappingGroup.create(difficulty: difficulty, language: @lang)
+          @lang.challenges.where(difficulty: difficulty).shuffle.each_with_index do |chal, index|
+            @gmg.game_mappings.create(challenge: chal, sort: index)
           end
         end
       end
