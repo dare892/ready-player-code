@@ -9,7 +9,7 @@
     .thead
       span.wid50 Input
       span.wid50 Outut
-    - @challenge.challenge_answers.each do |ans|
+    - @challenge.challenge_answers.where(is_test: false).each do |ans|
       .tr
         span.wid50 = ans.input
         span.wid50 = ans.output
