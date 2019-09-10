@@ -15,6 +15,7 @@ class ChallengesController < ApplicationController
   # GET /challenges/new
   def new
     @challenge = Challenge.new
+    @language_id = params[:language_id]
   end
 
   # GET /challenges/1/edit

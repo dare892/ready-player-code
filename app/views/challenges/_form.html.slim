@@ -15,7 +15,8 @@
   .field
     = f.label :difficulty
     = f.number_field :difficulty
-  .field
-    = f.label :language
-    = f.text_field :language
+  
+  .field.hidden
+    = f.text_field :language_id, value: @challenge.try(:language_id) || params[:language_id]
+    
   .actions = f.submit

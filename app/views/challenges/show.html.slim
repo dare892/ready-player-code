@@ -1,5 +1,3 @@
-p#notice = notice
-
 p
   strong Title:
   = @challenge.title
@@ -12,6 +10,23 @@ p
 p
   strong Language:
   = @challenge.language
+  
+= link_to new_challenge_answers_path(challenge_id: @challenge.id) do
+  .button.button5 New Challenge
+  
+h5 Answers
+table.table
+  thead
+    tr
+      th Input
+      th Output
+      th Is Test?
+  tbody
+    - @challenge.challenge_answers.order(:is_test).each do |answer|
+      tr
+        td = answer.input
+        td = answer.output
+        td = answer.is_test
 
 => link_to 'Edit', edit_challenge_path(@challenge)
 '|

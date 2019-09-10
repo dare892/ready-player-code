@@ -6,9 +6,8 @@
         - @challenge_answer.errors.full_messages.each do |message|
           li = message
 
-  .field
-    = f.label :challenge
-    = f.text_field :challenge
+  .field.hidden
+    = f.text_field :challenge, value: @challenge_answer.try(:challenge_id) || params[:challenge_id]
   .field
     = f.label :input
     = f.text_area :input

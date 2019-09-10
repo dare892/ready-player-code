@@ -1,9 +1,23 @@
-p#notice = notice
-
 p
   strong Name:
   = @language.name
 
-=> link_to 'Edit', edit_language_path(@language)
-'|
-=< link_to 'Back', languages_path
+= link_to new_challenge_path(language_id: @language.id) do
+  .button.button5 New Challenge
+  
+h5 Challenges
+table.table
+  thead
+    tr
+      th difficulty
+      th title
+  tbody
+    - @language.challenges.order(:difficulty).each do |challenge|
+      tr
+        td = challenge.difficulty
+        td 
+          = link_to challenge_path(challenge) do
+            = challenge.title
+
+= link_to 'Edit', edit_language_path(@language)
+= link_to 'Back', languages_path
