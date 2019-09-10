@@ -1,21 +1,20 @@
-h1 Listing languages
+.container.mar-top50
+  h3 Listing languages
 
-table
-  thead
-    tr
-      th Name
-      th
-      th
-      th
-
-  tbody
-    - @languages.each do |language|
+  table.table
+    thead
       tr
-        td = language.name
-        td = link_to 'Show', language
-        td = link_to 'Edit', edit_language_path(language)
-        td = link_to 'Destroy', language, data: { confirm: 'Are you sure?' }, method: :delete
+        th Name
+        th
 
-br
+    tbody
+      - @languages.each do |language|
+        tr
+          td = language.name
+          td = link_to 'View', language
+          td = link_to 'Edit', edit_language_path(language)
 
-= link_to 'New Language', new_language_path
+  br
+
+  = link_to new_language_path do
+    .button.button1 New Language

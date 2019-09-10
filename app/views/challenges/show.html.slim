@@ -1,33 +1,29 @@
-p
-  strong Title:
-  = @challenge.title
-p
-  strong Description:
-  = @challenge.description
-p
-  strong Difficulty:
-  = @challenge.difficulty
-p
-  strong Language:
-  = @challenge.language
-  
-= link_to new_challenge_answers_path(challenge_id: @challenge.id) do
-  .button.button5 New Challenge
-  
-h5 Answers
-table.table
-  thead
-    tr
-      th Input
-      th Output
-      th Is Test?
-  tbody
-    - @challenge.challenge_answers.order(:is_test).each do |answer|
-      tr
-        td = answer.input
-        td = answer.output
-        td = answer.is_test
+.container.mar-top50
+  h3 = @challenge.title
+  h5.mar-top30 = @challenge.description
+  .mar-top30
+    strong Difficulty:
+    span.mar-lef10 = @challenge.difficulty
+    
+  .mar-top70
+    h5 Answers
+    .pull-right
+      = link_to new_challenge_answer_path(challenge_id: @challenge.id) do
+        .button.button1 Add Answer
+    
+    table.table
+      thead
+        tr
+          th Input
+          th Output
+          th Is Test?
+      tbody
+        - @challenge.challenge_answers.order(:is_test).each do |answer|
+          tr
+            td = answer.input
+            td = answer.output
+            td = answer.is_test
 
-=> link_to 'Edit', edit_challenge_path(@challenge)
-'|
-=< link_to 'Back', challenges_path
+    => link_to 'Edit', edit_challenge_path(@challenge)
+    '|
+    =< link_to 'Back', challenges_path

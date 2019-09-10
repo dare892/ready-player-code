@@ -1,23 +1,24 @@
-p
-  strong Name:
-  = @language.name
+.container.mar-top50
+  = link_to 'Back', languages_path
+  h4 = @language.name
 
-= link_to new_challenge_path(language_id: @language.id) do
-  .button.button5 New Challenge
-  
-h5 Challenges
-table.table
-  thead
-    tr
-      th difficulty
-      th title
-  tbody
-    - @language.challenges.order(:difficulty).each do |challenge|
-      tr
-        td = challenge.difficulty
-        td 
-          = link_to challenge_path(challenge) do
-            = challenge.title
+  .pull-right.mar-top30
+    = link_to new_challenge_path(language_id: @language.id) do
+      .button.button1 New Challenge
 
-= link_to 'Edit', edit_language_path(@language)
-= link_to 'Back', languages_path
+  .mar-top50
+    h5 Challenges
+    table.table
+      thead
+        tr
+          th difficulty
+          th title
+      tbody
+        - @language.challenges.order(:difficulty).each do |challenge|
+          tr
+            td = challenge.difficulty
+            td 
+              = link_to challenge_path(challenge) do
+                = challenge.title
+
+  / = link_to 'Edit', edit_language_path(@language)

@@ -14,7 +14,7 @@
     = f.text_area :description
   .field
     = f.label :difficulty
-    = f.number_field :difficulty
+    = f.select :difficulty, Challenge.difficulties.keys.map { |w| [w.humanize, w] }
   
   .field.hidden
     = f.text_field :language_id, value: @challenge.try(:language_id) || params[:language_id]

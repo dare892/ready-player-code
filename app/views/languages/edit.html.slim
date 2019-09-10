@@ -1,8 +1,9 @@
-h1 Editing language
+.container.mar-top50
+  h3 Editing language
 
-== render 'form'
+  == render 'form'
 
-=> link_to 'Show', @language
-'|
-=< link_to 'Back', languages_path
-
+  => link_to 'Show', @language
+  '|
+  =< link_to 'Back', languages_path
+  td = link_to 'Destroy', @language, data: { confirm: 'Are you sure?' }, method: :delete
