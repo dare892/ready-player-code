@@ -1,5 +1,5 @@
 function displayTiles(){
-  $('#overlay-tiles').fadeIn();
+  $('.overlay-tile').fadeIn();
   $('#overlay-tiles').removeClass('hidden');
   var k = 1;
   for(var t=0;t<100;t++){
@@ -9,7 +9,7 @@ function displayTiles(){
     }, t*10)
   }
   setTimeout(function(){
-    $('#overlay-tiles').fadeOut();
+    $('.overlay-tile').fadeOut();
   }, 2000)
   setTimeout(function(){
     $('#overlay-tiles').addClass('hidden');

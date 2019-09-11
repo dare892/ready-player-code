@@ -29,7 +29,7 @@ class ResponsesController < ApplicationController
             @response.room.update(status: 'pending')
             @game.win(current_user)
             msg = @response.room.messages.create(body: "#{current_user.name} has won the game!")
-            format.js { render "games/completed.js.erb"}
+            format.js { render json: nil, status: :ok }
           else
             current_user.earn_points('challenge')
             @response.room.emit({'data_type':'in_game', 'message':'completed_challenge', 'session_hash':current_user.session_hash, 'player_name':current_user.name})

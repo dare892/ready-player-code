@@ -65,8 +65,7 @@ class Room < ApplicationRecord
         ActionCable.server.broadcast "room_#{self.id}_channel",
           data_type: data[:data_type],
           message: data[:message],
-          session_hash: data[:session_hash],
-          player_name: data[:player_name]
+          game_id: data[:game_id]
       end
     else
       puts "Not sure how to handle."

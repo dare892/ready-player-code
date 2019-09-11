@@ -14,22 +14,22 @@
           .thead
             span.wid40
             span.wid20
-            span.wid40 Challenges Completed
+            span.wid40 Challenges
 
           - @game.winners.each do |user|
-            .game-result
-              span.wd40.game-result-name = user.name
-              span.wd20.game-result-status = 'WIN'
-              span.wd40.game-result-challenges = user.responses.where(challenge_game_id: challenge_game_ids).count
+            .tr.game-result
+              span.wid40.game-result-name = user.name
+              span.wid20.game-result-status = 'WIN'
+              span.wid40.game-result-challenges = user.responses.where(challenge_game_id: challenge_game_ids).count
 
-          .mar-top.losers
+          .mar-top30.losers
             - @game.losers.each do |user|
-              .game-result
-                span.wd40.game-result-name = user.name
-                span.wd40.game-result-status = 'LOSS'
-                span.wd40.game-result-challenges = user.responses.where(challenge_game_id: challenge_game_ids).count
+              .tr.game-result.losers
+                span.wid40.game-result-name = user.name
+                span.wid20.game-result-status = 'LOSS'
+                span.wid40.game-result-challenges = user.responses.where(challenge_game_id: challenge_game_ids).count
 
-      .button.button6 data-dismiss="modal" CLOSE
+        .button.button6 data-dismiss="modal" CLOSE
 
 javascript:
   $(document).ready(function(){

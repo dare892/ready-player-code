@@ -43,6 +43,7 @@ javascript:
             mg = data['message']
             if(mg == 'start_game'){
               myplayer_startGame(data['game_id'])
+              allplayer_toggleStartBtn('hide')
             }
           }
           else if (da_t == 'in_game'){
@@ -130,6 +131,7 @@ javascript:
   }
 
   function myplayer_completedChallenge(challenge_id){
+    show_ajax_notification('Good Job!')
     challenge_ids = current_game_challenge_ids
     for( var i = 0; i < challenge_ids.length; i++){
       if ( challenge_ids[i] === challenge_id) {
@@ -177,7 +179,7 @@ javascript:
   }
 
   function allplayer_getGameResults(game_id){
-    $.get("games/" + game_id + "/display_results")
+    $.get("/games/" + game_id + "/display_results")
   }
 
   function otherplayer_increaseChallengeTicker(session_hash){
@@ -190,7 +192,7 @@ javascript:
 
   //////////////////// GAME EFFECTS ////////////////////
   function myplayer_resetUI(){
-    $('#code-challenge-container').html('').addClass('hidden')
+    $('#code-challenge-container').addClass('hidden')
     $('#code-main-wrapper').html('')
   }
   function otherplayers_resetUI(){
@@ -200,8 +202,19 @@ javascript:
     })
     $('.other-player .progress-container').addClass('hidden')
   }
+  
+  function allplayer_toggleStartBtn(toggle){
+    if(toggle == 'hide'){
+      $('[data-entity=start-game-btn]').addClass('hidden')
+    }
+    else{
+      $('[data-entity=start-game-btn]').removeClass('hidden')
+    }
+  }
+  
 
   function resetGame(){
     myplayer_resetUI()
     otherplayers_resetUI()
+    allplayer_toggleStartBtn('show')
   }

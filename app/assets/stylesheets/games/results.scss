@@ -15,8 +15,8 @@
     text-align: center;
     padding: 60px;
     h2{
-      color: $purple
-      text-shadow: 2px 2px $purple;
+      font-size: 64px;
+      margin-bottom: -30px;
     }
     img{
       position: absolute;
@@ -27,10 +27,12 @@
     }
   }
   #game-results-table{
+    text-align: center;
     .thead{
       text-shadow: 2px 2px white;
       color: white;
       font-size: 14px;
+      text-shadow: none;
     }
     .game-result{
       border-bottom: 1px solid $green;
@@ -38,26 +40,32 @@
         text-shadow: 2px 2px white;
         color: white;
         font-size: 14px;
+        text-shadow: none;
       }
       .game-result-status{
         text-shadow: 2px 2px $green-lt;
         color: $green-lt;
         font-size: 20px;
+        text-shadow: none;
       }
       .game-result-challenges{
         text-shadow: 2px 2px white;
         color: white;
         font-size: 14px;
+        text-shadow: none;
       }
     }
     .losers{
       .game-result{
         border-bottom: 1px solid #cf193d;
         .game-result-status{
-          text-shadow: 2px 2px #cf193d;
           color: #cf193d;
         }
       }
     }
+  }
+  .button{
+    width: 100%;
+    margin-top: 30px;
   }
 }
