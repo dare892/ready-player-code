@@ -25,7 +25,7 @@ class ResponsesController < ApplicationController
       if @result == 'pass'
         if @response.save
           if @game.completed_all_challenges(current_user)
-            @response.room.emit({'data_type':'in_game', 'message':'completed_game', 'session_hash':current_user.session_hash})
+            @response.room.emit({'data_type':'in_game', 'message':'completed_game', 'game_id':@game.id})
             @response.room.update(status: 'pending')
             @game.win(current_user)
             msg = @response.room.messages.create(body: "#{current_user.name} has won the game!")

@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_action :set_game, only: [:show, :edit, :update, :destroy, :load]
+  before_action :set_game, only: [:show, :edit, :update, :destroy, :load, :display_results]
 
   def index
     @games = Game.all
@@ -49,6 +49,10 @@ class GamesController < ApplicationController
   end
   
   def load
+    
+  end
+  
+  def display_results
     
   end
   

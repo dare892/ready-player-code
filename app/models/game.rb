@@ -30,4 +30,12 @@ class Game < ApplicationRecord
       other_users.game_results.find_or_create_by(game: self, result: 'loss')
     end
   end
+  
+  def winners
+    User.where(id: self.game_results.where(result: 'win').pluck(:user_id))
+  end
+  
+  def losers
+    User.where(id: self.game_results.where(result: 'loss').pluck(:user_id))
+  end
 end

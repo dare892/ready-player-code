@@ -51,7 +51,10 @@ javascript:
               anyplayer_displayChallengeCompletedConfetti(data['session_hash'])
             }
             else if(mg == 'completed_game'){
-              anyplayer_displayGameCompletedConfetti(data['session_hash'], data['player_name'])
+              allplayer_getGameResults(data['game_id'])
+              setTimeout(function(){
+                resetGame()
+              }, 3000)
             }
           }
         }
@@ -172,17 +175,8 @@ javascript:
     }, 300)
   }
 
-  function anyplayer_displayGameCompletedConfetti(session_hash, player_name){
-    my_window = $("#code-main-wrapper[data-session-hash="+session_hash+"]")
-    other_player_window = $(".other-player[data-session-hash="+session_hash+"]")
-    if(my_window.length > 0){
-      $('#code-game-ticker-container .progress-bar').css('width', '100%')
-      alert('You won!')
-    }
-    else if (other_player_window.length > 0){
-      alert('You lost. ' + player_name + ' won!')
-    }
-    resetGame()
+  function allplayer_getGameResults(game_id){
+    $.get("games/" + game_id + "/display_results")
   }
 
   function otherplayer_increaseChallengeTicker(session_hash){
@@ -207,8 +201,6 @@ javascript:
   }
 
   function resetGame(){
-    setTimeout(function(){
-      myplayer_resetUI()
-      otherplayers_resetUI()
-    }, 2000)
+    myplayer_resetUI()
+    otherplayers_resetUI()
   }

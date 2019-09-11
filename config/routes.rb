@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :games do
     member do
       get 'load' => 'games#load', as: :load
+      get 'display_results' => 'games#display_results', as: :display_results
     end
   end
   resources :challenge_answers

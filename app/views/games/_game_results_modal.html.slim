@@ -5,7 +5,10 @@
       = image_tag "wave3.gif", id: 'game-results-image'
       .pad20.relative-position
         #game-results-header
-          h2 GAME OVER
+          - if @game.winners.pluck(:id).include?(current_user.id)
+            h2 VICTORY
+          - else
+            h2.redded DEFEAT
 
         #game-results-table.fake-table
           .thead
@@ -13,16 +16,14 @@
             span.wid20
             span.wid40 Challenges Completed
 
-          - @game.game_results.where(result: 'win').each do |winner|
-            - user = winner.user
+          - @game.winners.each do |user|
             .game-result
               span.wd40.game-result-name = user.name
               span.wd20.game-result-status = 'WIN'
               span.wd40.game-result-challenges = user.responses.where(challenge_game_id: challenge_game_ids).count
 
           .mar-top.losers
-            - @game.game_results.where(result: 'loss').each do |loser|
-              - user = loser.user
+            - @game.losers.each do |user|
               .game-result
                 span.wd40.game-result-name = user.name
                 span.wd40.game-result-status = 'LOSS'
