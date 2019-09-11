@@ -1,9 +1,11 @@
 class PagesController < ApplicationController
+  access :user => [:single],
+         :all => :all
   def index
   
   end
   
   def single
-    @challenges = Challenge.where(published: true)
+    @challenges = Challenge.all.order(:difficulty)
   end
 end

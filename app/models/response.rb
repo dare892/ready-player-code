@@ -1,5 +1,6 @@
 class Response < ApplicationRecord
-  belongs_to :challenge_game
+  belongs_to :challenge_game, optional: true
+  belongs_to :challenge, optional: true
   belongs_to :user
   
   def room

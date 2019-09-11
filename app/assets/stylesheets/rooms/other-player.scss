@@ -1,54 +1,58 @@
-@keyframes background-highlight {
-  0% {
-      background-size:    0 3px,
-                          3px 0,
-                          0 3px,
-                          3px 0;
-  }
-  25% {
-      background-size:    100% 3px,
-                          3px 0,
-                          0 3px,
-                          3px 0;
-  }
-  50% {
-      background-size:    100% 3px,
-                          3px 100%,
-                          0 3px,
-                          3px 0;
-  }
-  75% {
-      background-size:    100% 3px,
-                          3px 100%,
-                          100% 3px,
-                          3px 0;
-  }
-  100% {
-      background-size:    100% 3px,
-                          3px 100%,
-                          100% 3px,
-                          3px 100%;
-  }
-}
+// @keyframes background-highlight {
+//   0% {
+//       background-size:    0 3px,
+//                           3px 0,
+//                           0 3px,
+//                           3px 0;
+//   }
+//   25% {
+//       background-size:    100% 3px,
+//                           3px 0,
+//                           0 3px,
+//                           3px 0;
+//   }
+//   50% {
+//       background-size:    100% 3px,
+//                           3px 100%,
+//                           0 3px,
+//                           3px 0;
+//   }
+//   75% {
+//       background-size:    100% 3px,
+//                           3px 100%,
+//                           100% 3px,
+//                           3px 0;
+//   }
+//   100% {
+//       background-size:    100% 3px,
+//                           3px 100%,
+//                           100% 3px,
+//                           3px 100%;
+//   }
+// }
+// 
+// .highlight-div {
+//   background-repeat: no-repeat;
+//   background-image:   linear-gradient(to right, #fff200 100%, #fff200 100%),
+//                       linear-gradient(to bottom, #fff200 100%, #fff200 100%),
+//                       linear-gradient(to right, #fff200 100%, #fff200 100%),
+//                       linear-gradient(to bottom, #fff200 100%, #fff200 100%);
+//   background-size:    100% 3px,
+//                       3px 100%,
+//                       100% 3px,
+//                       3px 100%;
+//   background-position:    0 0,
+//                           100% 0,
+//                           100% 100%,
+//                           0 100%;
+//   animation: background-highlight 0.3s cubic-bezier(0.19, 1, 0.22, 1) 1;
+//   animation-play-state: paused;
+// }
+// 
+// .highlight-div {
+//   animation-play-state: running;
+// }
 
-.highlight-div {
-  background-repeat: no-repeat;
-  background-image:   linear-gradient(to right, #fff200 100%, #fff200 100%),
-                      linear-gradient(to bottom, #fff200 100%, #fff200 100%),
-                      linear-gradient(to right, #fff200 100%, #fff200 100%),
-                      linear-gradient(to bottom, #fff200 100%, #fff200 100%);
-  background-size:    100% 3px,
-                      3px 100%,
-                      100% 3px,
-                      3px 100%;
-  background-position:    0 0,
-                          100% 0,
-                          100% 100%,
-                          0 100%;
-  animation: background-highlight 0.3s cubic-bezier(0.19, 1, 0.22, 1) 1;
-  animation-play-state: paused;
-}
-
-.highlight-div {
-  animation-play-state: running;
+.highlight-div{
+  background-color: $purple;
 }

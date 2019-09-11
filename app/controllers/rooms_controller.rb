@@ -1,5 +1,6 @@
 class RoomsController < ApplicationController
   before_action :set_room, only: [:show, :edit, :update, :destroy, :pin_enter]
+  before_action :check_member_permissions, only: [:update, :destroy]
   access :user => :all
 
   def index
@@ -10,17 +11,21 @@ class RoomsController < ApplicationController
   end
 
   def show
-    if @room.status == 'pending'
-      @room_user = @room.room_users.find_by(user: current_user)
-      if !@room_user
-        @room_user = @room.room_users.create(user: current_user)
-        @room.messages.create(body: "#{current_user.name} has joined.")
-        @room.emit({'data_type':'user', 'message':'player_joined', 'session_hash':current_user.session_hash})
-      end
+    if @room.pin.present? && params[:pin] != @room.pin.to_s
+      redirect_to rooms_path(prompt_pin_for_room: @room.id)
     else
-      @room_user = @room.room_users.find_by(user: current_user)
-      if !@room_user
-        redirect_to rooms_path, alert: 'That room is already in a game.'
+      if @room.status == 'pending'
+        @room_user = @room.room_users.find_by(user: current_user)
+        if !@room_user
+          @room_user = @room.room_users.create(user: current_user)
+          @room.messages.create(body: "#{current_user.name} has joined.")
+          @room.emit({'data_type':'user', 'message':'player_joined', 'session_hash':current_user.session_hash})
+        end
+      else
+        @room_user = @room.room_users.find_by(user: current_user)
+        if !@room_user
+          redirect_to rooms_path, alert: 'That room is already in a game.'
+        end
       end
     end
   end
@@ -37,7 +42,7 @@ class RoomsController < ApplicationController
     respond_to do |format|
       if @room.save
         current_user.emit({'data_type':'room'})
-        format.html { redirect_to @room, notice: 'Room was successfully created.' }
+        format.html { redirect_to room_path(@room, pin: @room.pin), notice: 'Room was successfully created.' }
         format.json { render :show, status: :created, location: @room }
       else
         format.html { render :new }
@@ -87,11 +92,15 @@ class RoomsController < ApplicationController
   end
 
   private
-    def set_room
-      @room = Room.find(params[:id])
-    end
+  def set_room
+    @room = Room.find(params[:id])
+  end
 
-    def room_params
-      params.require(:room).permit(:name, :pin, :language_id, :mode, :difficulty, :status)
-    end
+  def room_params
+    params.require(:room).permit(:name, :pin, :language_id, :mode, :difficulty, :status)
+  end
+  
+  def check_member_permissions
+    forbidden! unless @room.room_users.find_by(user: current_user)
+  end
 end

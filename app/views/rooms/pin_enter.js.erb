@@ -1,5 +1,5 @@
 <% if @alert %>
-  alert("<%= @alert %>")
+  show_ajax_alert("<%= @alert %>")
 <% else %>
-  window.location.href = "<%=room_path(@room)%>";
+  window.location.href = "<%=room_path(@room, pin: @room.pin)%>";
 <% end %>

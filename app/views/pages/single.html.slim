@@ -1,5 +1,23 @@
-h3 Challenges
-- @challenges.each do |challenge|
-  = link_to challenge do
+.container
+  #pages-single
     div
-      = challenge.title
+      = render partial: "profile/summary"
+    
+    #right-side
+      h3 Challenges
+      table.table
+        thead
+          tr
+            th Title
+            th Difficulty
+            th 
+            
+        tbody
+          - @challenges.each do |challenge|
+            tr
+              td 
+                = link_to challenge do
+                  = challenge.title
+              td = challenge.difficulty
+              td = current_user.responses.where(challenge: challenge)
+                  = challenge.title

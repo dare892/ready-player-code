@@ -1,15 +1,16 @@
 #code-main-title = @challenge.title
-#code-main-description
+#code-main-description.easy-font
   label Description
   p = @challenge.description
 
 #code-main-answers.mar-top25
   label Examples
-  .fake-table
+  .fake-table.easy-font
     .thead
       span.wid50 Input
       span.wid50 Outut
-    - @challenge.challenge_answers.where(is_test: false).each do |ans|
+    
+    - @challenge.challenge_answers.where(is_test: [false, nil]).each do |ans|
       .tr
         span.wid50 = ans.input
         span.wid50 = ans.output

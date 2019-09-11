@@ -1,8 +1,6 @@
 #pages-index
   = image_tag 'stars.gif', id: 'wrap'
 
-  /   #plane
-
   .container
     #login.main-card
       - if current_user.nil?
@@ -16,7 +14,7 @@
 
         .mar-top30
           = link_to destroy_user_session_path, method: :delete do
-            .link Back
+            .link Out
 
         / = link_to single_path do
         /   .button.button0 Single Player

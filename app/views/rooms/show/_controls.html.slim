@@ -1,13 +1,12 @@
 #rooms-show-controls.main-card
+  h4 = truncate(@room.name, length: 30)
   = link_to room_user_path(@room_user), method: :delete, data: {confirm: 'Are you sure?'} do
     .exit.mar-bot10 Exit
-
-  h5 = @room.name
   label HOST
   h6 = @room.host.name
-  - if @room.pin
+  - if @room.pin.present?
     label PIN
-    h6 = "Password: #{@room.pin}"
+    h6 = @room.pin
   .row
     .col-sm-6
       label LANGUAGE

@@ -12,6 +12,9 @@
     }
     .exit{
       text-decoration: underline;
+      float: right;
+      margin-top: -35px;
+      font-size: 14px;
     }
     .button{
       width: calc(100% - 40px);
@@ -25,7 +28,7 @@
     #room-chat-messages{
       margin-top: 22px;
       overflow: auto;
-      font-size: 11px;
+      font-size: 12px;
       padding: 0 7px;
       height: calc(100vh - 444px);
       .message-body{

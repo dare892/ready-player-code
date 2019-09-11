@@ -3,8 +3,17 @@
     width: 500px;
     position: relative;
     background-color: $black;
+    padding: 2px;
+  }
+  #game-results-image{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    opacity: 0.2;
   }
   #game-results-header{
+    text-align: center;
+    padding: 60px;
     h2{
       color: $purple
       text-shadow: 2px 2px $purple;

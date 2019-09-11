@@ -150,27 +150,26 @@ javascript:
     my_window = $("#code-main-wrapper[data-session-hash="+session_hash+"]")
     other_player_window = $(".other-player[data-session-hash="+session_hash+"]")
     if(my_window.length > 0){
-      my_window.addClass('highlighted')
-      setTimeout(function() {
-        my_window.removeClass('highlighted')
-      }, 1000)
+      //myplayer_highlightDiv(session_hash)
     }
     else if (other_player_window.length > 0){
-      other_player_window.addClass('highlighted')
-      setTimeout(function() {
-        other_player_window.removeClass('highlighted')
-      }, 1000)
-
       otherplayer_increaseChallengeTicker(session_hash)
       otherplayer_highlightDiv(session_hash)
     }
   }
 
   function otherplayer_highlightDiv(session_hash){
-    $(".other-player[data-session-hash="+session_hash+"]").addClass('highlight-div')
+    target_div = $(".other-player[data-session-hash="+session_hash+"]")
+    target_div.addClass('highlight-div')
     setTimeout(function(){
-      $(".other-player[data-session-hash="+session_hash+"]").removeClass('highlight-div')
-    }, 400)
+      target_div.removeClass('highlight-div')
+    }, 100)
+    setTimeout(function(){
+      target_div.addClass('highlight-div')
+    }, 200)
+    setTimeout(function(){
+      target_div.removeClass('highlight-div')
+    }, 300)
   }
 
   function anyplayer_displayGameCompletedConfetti(session_hash, player_name){

@@ -6,12 +6,13 @@
   left: 0;
   top: 10px;
   background-color: $black;
-  opacity: 0.9;
+  opacity: 0.95;
   border-radius: 5px;
   color: white;
   overflow: auto;
   label{
     @extend .text-1;
+    font-size: 13px;
   }
   #code-main-title{
     padding: 2px 0 11px;
@@ -20,13 +21,17 @@
     border-bottom: 2px dashed $purple;
   }
   #code-main-description{
-    padding: 5px;
-    font-size: 13px;
+    padding: 10px;
+    font-size: 16px;
+    text-shadow: none;
   }
   #code-main-answers{
-    padding: 5px;
+    padding: 10px;
     .tr{
       border-bottom: 1px solid white !important;
+    }
+    .thead, .tr{
+      font-size: 14px;
     }
   }
 

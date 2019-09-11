@@ -150,7 +150,7 @@ namespace :db do
       @lang = Language.find_or_create_by(name: lang)
       dif.each do |difficulty, challenges|
         challenges.each_with_index do |challenge, index|
-          @cha = Challenge.new(language: @lang, difficulty: difficulty, title: challenge[:title], description: challenge[:description])
+          @cha = Challenge.new(language: @lang, difficulty: difficulty, title: challenge[:title], description: challenge[:description], published: true)
           if @cha.save
             challenge[:answers].each do |answer|
               @cha.challenge_answers.create(input: answer[:input], output: answer[:output], is_test: answer[:is_test])

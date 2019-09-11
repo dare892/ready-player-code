@@ -1,6 +1,3 @@
-.highlighted{
-  border: solid purple 5px !important;
-}
 .text-centered{
   text-align: center;
 }
@@ -22,3 +19,7 @@ a{
   color: $purple;
   text-shadow: 1px 1px 10px $purple;
 }
+
+.easy-font{
+  font-family: 'Raleway', sans-serif;
+}      

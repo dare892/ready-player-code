@@ -35,3 +35,10 @@ javascript:
       $.get('/rooms.js')
     }
   }
+
+- if params[:prompt_pin_for_room]
+  javascript:
+    $(document).ready(function(){
+      showPinEnter("#{params[:prompt_pin_for_room]}")
+    })
+  

@@ -1,5 +1,6 @@
 class ResponsesController < ApplicationController
   before_action :set_response, only: [:show, :edit, :update, :destroy]
+  access :user => :all
 
   def index
     @responses = Response.all
@@ -16,12 +17,12 @@ class ResponsesController < ApplicationController
   end
 
   def create
-    @response = Response.new(response_params)
-    result = @response.challenge_game.challenge.check_answer(response_params[:body])
+    @response = Response.new(response_params.merge(user: current_user))
+    @result = @response.challenge_game.challenge.check_answer(response_params[:body])
     @game = @response.challenge_game.game
 
     respond_to do |format|
-      if result == 'pass'
+      if @result == 'pass'
         if @response.save
           if @game.completed_all_challenges(current_user)
             @response.room.emit({'data_type':'in_game', 'message':'completed_game', 'session_hash':current_user.session_hash})
@@ -38,6 +39,7 @@ class ResponsesController < ApplicationController
           format.js { render "shared/failed.js.erb"}
         end
       else
+        format.js { render "responses/failed.js.erb"}
         # need to respond here with what is wrong
       end
     end

@@ -1,28 +1,22 @@
 class RoomUsersController < ApplicationController
   before_action :set_room_user, only: [:show, :edit, :update, :destroy]
+  before_action :check_member_permissions, only: [:update, :destroy]
+  access :user => :all
 
-  # GET /room_users
-  # GET /room_users.json
   def index
     @room_users = RoomUser.all
   end
 
-  # GET /room_users/1
-  # GET /room_users/1.json
   def show
   end
 
-  # GET /room_users/new
   def new
     @room_user = RoomUser.new
   end
 
-  # GET /room_users/1/edit
   def edit
   end
 
-  # POST /room_users
-  # POST /room_users.json
   def create
     @room_user = RoomUser.new(room_user_params)
 
@@ -37,8 +31,6 @@ class RoomUsersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /room_users/1
-  # PATCH/PUT /room_users/1.json
   def update
     respond_to do |format|
       if @room_user.update(room_user_params)
@@ -69,13 +61,15 @@ class RoomUsersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_room_user
-      @room_user = RoomUser.find(params[:id])
-    end
+  def set_room_user
+    @room_user = RoomUser.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def room_user_params
-      params.require(:room_user).permit(:user_id, :room_id, :role)
-    end
+  def room_user_params
+    params.require(:room_user).permit(:user_id, :room_id, :role)
+  end
+  
+  def check_member_permissions
+    forbidden! unless @room_user.user == current_user
+  end
 end
