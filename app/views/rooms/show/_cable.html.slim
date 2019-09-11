@@ -51,6 +51,7 @@ javascript:
               anyplayer_displayChallengeCompletedConfetti(data['session_hash'])
             }
             else if(mg == 'completed_game'){
+              displayTiles()
               allplayer_getGameResults(data['game_id'])
               setTimeout(function(){
                 resetGame()
