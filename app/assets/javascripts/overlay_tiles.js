@@ -1,13 +1,18 @@
 function displayTiles(){
+  $('#overlay-tiles').fadeIn();
   $('#overlay-tiles').removeClass('hidden');
-  for(var t=1;t<101;t++){
+  var k = 1;
+  for(var t=0;t<100;t++){
     setTimeout(function(){
-      $('#overlay-tiles').addC("<div class='overlay-tile'></div>")
-      $('.overlay-tile[data-tile-id='+t+']').addClass('visible')
-    }, t*20)
+      $('.overlay-tile[data-tile-id='+k+']').addClass('visible')
+      k++;
+    }, t*10)
   }
   setTimeout(function(){
     $('#overlay-tiles').fadeOut();
+  }, 2000)
+  setTimeout(function(){
+    $('#overlay-tiles').addClass('hidden');
     $('.overlay-tile').removeClass('visible')
   }, 2500)
 }
