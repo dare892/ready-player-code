@@ -1,14 +1,13 @@
 function displayTiles(){
-  if($('#overlay-tiles').length < 1){
-    $('body').append("<div id='overlay-titles'></div>")
-    for(var t=0;t<200;t++){
-      $('#overlay-tiles').append("<div class='overlay-title'></div>")
-    }
+  $('#overlay-tiles').removeClass('hidden');
+  for(var t=1;t<101;t++){
     setTimeout(function(){
-      $('#overlay-tiles').fadeOut();
-    }, 3000)
-    setTimeout(function(){
-      $('#overlay-tiles').remove();
-    }, 4000)
+      $('#overlay-tiles').addC("<div class='overlay-tile'></div>")
+      $('.overlay-tile[data-tile-id='+t+']').addClass('visible')
+    }, t*20)
   }
+  setTimeout(function(){
+    $('#overlay-tiles').fadeOut();
+    $('.overlay-tile').removeClass('visible')
+  }, 2500)
 }

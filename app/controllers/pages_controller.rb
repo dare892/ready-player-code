@@ -8,4 +8,8 @@ class PagesController < ApplicationController
   def single
     @challenges = Challenge.all.order(:difficulty)
   end
+  
+  def test
+    
+  end
 end

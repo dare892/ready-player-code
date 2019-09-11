@@ -41,5 +41,6 @@ Rails.application.routes.draw do
 
   get '/' => 'pages#index'
   get 'single' => 'pages#single'
+  get 'test' => 'pages#test'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
