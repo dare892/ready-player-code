@@ -6,6 +6,23 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+puts "DESTROYING ALL OBJECTS-----------"
+
+# reset
+ChallengeAnswer.destroy_all
+ChallengeGame.destroy_all
+Challenge.destroy_all
+GameMapping.destroy_all
+GameMappingGroup.destroy_all
+GameResult.destroy_all
+Game.destroy_all
+Language.all.destroy_all
+Message.destroy_all
+Response.destroy_all
+RoomUser.destroy_all
+Room.destroy_all
+User.destroy_all
+
 puts "RUNNING SEEDS-----------"
 
 languages = ['javascript']
@@ -43,5 +60,4 @@ end
 # end
 
 Rake::Task['db:challenges'].invoke
-
 @user = User.create(name: 'Admin', email: 'admin@example.com', password: 'qkrwhdtkd')

@@ -143,7 +143,26 @@ namespace :db do
             ]
           }
         ]
-      }
+      },
+      'ruby' =>{
+        'beginner'=>[
+          {
+            title: 'test1',
+            description: "Write a function readyPlayerCode(num) that returns an integer that is double the number.",
+            answers: [
+              {
+                input: '1',
+                output: '2'
+              },
+              {
+                input: '2',
+                output: '4',
+                is_test: true
+              }
+            ]
+          }
+        ]
+      } 
     }
     
     challenges.each do |lang, dif|
