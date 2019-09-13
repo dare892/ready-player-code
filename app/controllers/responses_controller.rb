@@ -40,7 +40,6 @@ class ResponsesController < ApplicationController
         end
       else
         format.js { render "responses/failed.js.erb"}
-        # need to respond here with what is wrong
       end
     end
   end

@@ -6,7 +6,7 @@ class Challenge < ApplicationRecord
   
   enum difficulty: ['beginner', 'easy', 'medium', 'hard', 'master']
   
-  AVAILABLE_LANGUAGES = {
+  LANGUAGES = {
     "ruby" => ["ruby", ".rb"],
     "javascript" => ["node", ".js"],
     "python" => ["python3", ".py"]
@@ -16,7 +16,7 @@ class Challenge < ApplicationRecord
     # return 'pass'
     # docker here
     
-    testing_suite_info = Challenge::AVAILABLE_LANGUAGES[self.language.name]
+    testing_suite_info = Challenge::LANGUAGES[self.language.name]
     path = Rails.root.join("public", "docker-tests").to_s
     docker_file = "#{Digest::SHA1.hexdigest([Time.now, rand].join)[0..10]}" + testing_suite_info.last
     f_name = path + "/#{docker_file}"
