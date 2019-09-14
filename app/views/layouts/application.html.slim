@@ -13,11 +13,12 @@ html
 
   body
     - if !(action_name == 'index' && controller_name == 'pages')
-      = link_to '/' do 
+      = link_to '/' do
         .logo.text-centered READYPLAYERCODE
 
     .yield
       = yield
       = render partial: "shared/notice"
 
+    = render partial: "shared/overlay"
     #modal-wrapper

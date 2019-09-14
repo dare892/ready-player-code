@@ -33,6 +33,12 @@
   &.button6{
     @include button-mixin($black, $purple, $purple, $purple, $purple, white);
   }
+  &.button8{
+    @include button-mixin($yellow, $yellow-lt1, $yellow, $yellow, black, black);
+  }
+  &.button9{
+    @include button-mixin($black, $yellow, $yellow, $yellow, $yellow, black);
+  }
   &.width100{
     width: 100% !important;
   }

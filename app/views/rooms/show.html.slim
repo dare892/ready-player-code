@@ -14,7 +14,7 @@
           #code-main-wrapper.main-card data-session-hash="#{current_user.session_hash}"
             / show/code_main
 
-          #code-main-fake-button.button.button6.hidden onclick="$('#code-main-wrapper form input[type=submit]').click();" SUBMIT
+          #code-main-fake-button.button.button8.hidden onclick="submitRealForm()" SUBMIT
 
         #other-players-container
           #other-players-wrapper
@@ -34,5 +34,18 @@
 
   = render partial: "rooms/show/countdown_modal"
   = render partial: "shared/tiles"
-  
+
+  = render partial: 'shared/processing_code'
+
   / = render partial: "rooms/show/game_over_modal"
+
+javascript:
+  function submitRealForm(){
+    if($('#response_body').val() == ""){
+      show_ajax_alert('Response is empty. Please write some code!')
+    }
+    else{
+      $('#code-main-wrapper form input[type=submit]').click();
+      $('#processing-code').removeClass('hidden')
+    }
+  }

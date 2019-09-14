@@ -131,7 +131,6 @@ javascript:
   }
 
   function myplayer_completedChallenge(challenge_id){
-    show_ajax_notification('Good Job!')
     challenge_ids = current_game_challenge_ids
     for( var i = 0; i < challenge_ids.length; i++){
       if ( challenge_ids[i] === challenge_id) {
@@ -157,6 +156,8 @@ javascript:
     other_player_window = $(".other-player[data-session-hash="+session_hash+"]")
     if(my_window.length > 0){
       //myplayer_highlightDiv(session_hash)
+      $('#processing-code').addClass('hidden')
+      show_ajax_system('Code Passed!')
     }
     else if (other_player_window.length > 0){
       otherplayer_increaseChallengeTicker(session_hash)
@@ -202,7 +203,7 @@ javascript:
     })
     $('.other-player .progress-container').addClass('hidden')
   }
-  
+
   function allplayer_toggleStartBtn(toggle){
     if(toggle == 'hide'){
       $('[data-entity=start-game-btn]').addClass('hidden')
@@ -211,9 +212,10 @@ javascript:
       $('[data-entity=start-game-btn]').removeClass('hidden')
     }
   }
-  
+
 
   function resetGame(){
+    $('#processing-code').addClass('hidden')
     myplayer_resetUI()
     otherplayers_resetUI()
     allplayer_toggleStartBtn('show')

@@ -19,11 +19,15 @@ a{
   color: $purple;
   text-shadow: 1px 1px 10px $purple;
 }
+.text-2{
+  color: $yellow;
+  text-shadow: 1px 1px 10px $yellow-lt1;
+}
 
 .easy-font{
   font-family: 'Raleway', sans-serif;
   text-shadow: none;
-}      
+}
 
 .redded{
   color: $purple;

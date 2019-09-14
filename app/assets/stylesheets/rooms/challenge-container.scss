@@ -1,7 +1,7 @@
 #code-challenge-container{
   width: 300px;
   height: calc(100vh - 20px);
-  border: solid $purple 2px;
+  border: solid $yellow 2px;
   position: absolute;
   left: 0;
   top: 10px;
@@ -11,14 +11,14 @@
   color: white;
   overflow: auto;
   label{
-    @extend .text-1;
+    @extend .text-2;
     font-size: 13px;
   }
   #code-main-title{
     padding: 2px 0 11px;
     font-size: 14px;
     text-align: center;
-    border-bottom: 2px dashed $purple;
+    border-bottom: 2px dashed $yellow;
   }
   #code-main-description{
     padding: 10px;
@@ -51,7 +51,7 @@
 .progress-container{
   width: 100%;
   height: 15px;
-  border: solid #e403e5 2px;
+  border: solid $yellow 2px;
   margin: 12px 10px;
   border-radius: 15px;
   background: transparent;
@@ -59,7 +59,7 @@
 }
 .progress-bar{
   height: 100%;
-  background-image: linear-gradient(to right, #fc01ff, #feb1ff);
+  background-image: linear-gradient(to right, $yellow, $yellow-lt1);
   border-radius: 15px;
 }
 
