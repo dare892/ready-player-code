@@ -1,4 +1,0 @@
-
-
-
-puts readyPlayerCode(2)
