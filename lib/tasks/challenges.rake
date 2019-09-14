@@ -45,7 +45,8 @@ namespace :db do
               },
               {
                 input: "I Love Code",
-                output: "edoC evoL I"
+                output: "edoC evoL I",
+                is_test: true
               }
             ]
           },
@@ -162,9 +163,9 @@ namespace :db do
             ]
           }
         ]
-      } 
+      }
     }
-    
+
     challenges.each do |lang, dif|
       @lang = Language.find_or_create_by(name: lang)
       dif.each do |difficulty, challenges|
@@ -179,7 +180,7 @@ namespace :db do
             puts cha.errors.full_messages.join(",")
           end
         end
-        
+
         (1..3).each do |num|
           @gmg = GameMappingGroup.create(difficulty: difficulty, language: @lang)
           @lang.challenges.where(difficulty: difficulty).shuffle.each_with_index do |chal, index|
