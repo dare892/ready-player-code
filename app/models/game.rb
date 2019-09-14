@@ -7,10 +7,10 @@ class Game < ApplicationRecord
   
   enum status: ['playing','finished']
   
-  def setup
+  def setup(language)
     # difficulty = self.room.difficulty
-    difficulty = 'easy'
-    gmg = GameMappingGroup.where(difficulty: difficulty).shuffle.first
+    difficulty = 'beginner'
+    gmg = GameMappingGroup.where(difficulty: difficulty, language: language).shuffle.first
     gmg.game_mappings.order(:sort).each_with_index do |game_mapping, index|
       self.challenge_games.create(
         challenge: game_mapping.challenge, 

@@ -57,7 +57,7 @@ class RoomsController < ApplicationController
         case params[:action_type]
         when 'start_game'
           @game = @room.games.create(status: 'playing')
-          @game.setup
+          @game.setup(@room.language)
           @room.emit({'data_type':'game_status', 'message':'start_game', 'game_id': @game.id})
           format.js { render json: nil, status: :ok }
         else
