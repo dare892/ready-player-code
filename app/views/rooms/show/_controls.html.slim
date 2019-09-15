@@ -10,7 +10,7 @@
   .row
     .col-sm-6
       label LANGUAGE
-      h6 = @room.language.name
+      h6.text-2 = @room.language.name
     .col-sm-6
       label MODE
       h6 = @room.mode.gsub('_', ' ') if @room.mode
@@ -18,8 +18,9 @@
   h6 = @room.difficulty
   - if @room.host == current_user
     #start-game-btn-wrapper data-entity="start-game-btn"
+      .button.button8 onclick="startGamePushed()" START GAME
       = form_for @room, remote: true do |f|
         .hidden
           = f.text_field :status, value: 'playing'
           = text_field_tag :action_type, 'start_game'
-        = f.submit 'START GAME', class: 'button button8'
+          = f.submit 'START GAME', class: 'button button8'

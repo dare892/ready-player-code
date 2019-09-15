@@ -13,8 +13,9 @@ html
 
   body
     - if !(action_name == 'index' && controller_name == 'pages')
-      = link_to '/' do
-        .logo.text-centered READYPLAYERCODE
+      .logo
+        = link_to '/' do
+          .text-centered READYPLAYERCODE
 
     .yield
       = yield

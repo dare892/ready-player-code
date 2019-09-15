@@ -57,9 +57,9 @@
     }
     .losers{
       .game-result{
-        border-bottom: 1px solid #cf193d;
+        border-bottom: 1px solid $purple;
         .game-result-status{
-          color: #cf193d;
+          color: $purple;
         }
       }
     }

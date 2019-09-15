@@ -18,7 +18,14 @@
     padding: 2px 0 11px;
     font-size: 14px;
     text-align: center;
-    border-bottom: 2px dashed $yellow;
+  }
+  #code-main-platform{
+    text-align: center;
+    color: black;
+    background: repeating-linear-gradient( 45deg, $yellow, $yellow 10px, white 10px, white 20px );
+    padding: 5px 0 3px;
+    text-transform: uppercase;
+    font-weight: 900;
   }
   #code-main-description{
     padding: 10px;

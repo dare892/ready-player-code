@@ -3,13 +3,16 @@
   .field.mar-top40
     = f.label :name
     = f.text_field :name, autocomplete: 'off'
-  .field
-    = f.label :language
-    = f.select :language_id, options_from_collection_for_select(Language.published, 'id', 'name')
+  .row
+    .col-sm-6
+      .field
+        = f.label :language
+        = f.select :language_id, options_from_collection_for_select(Language.published, 'id', 'name')
 
-  .field.pill-buttons
-    span.selected onclick="togglePin('')" Public
-    span onclick="togglePin('private')" Private
+    .col-sm-6
+      .field.pill-buttons
+        span.selected onclick="togglePin('')" Public
+        span onclick="togglePin('private')" Private
 
   .field.mar-top30.mar-bot-10.hidden data-target="pin-fields"
     = f.label :pin

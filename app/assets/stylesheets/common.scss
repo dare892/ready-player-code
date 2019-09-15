@@ -19,7 +19,9 @@ body{
 .logo{
   font-size: 10px;
   padding-top: 5px;
-  text-decoration: none;
+  a{
+    text-decoration: none !important;
+  }
 }
 
 .hidden{

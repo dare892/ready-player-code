@@ -1,4 +1,11 @@
 #rooms-show{
+  #background-wave{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    min-height: 100%;
+    opacity: 0.15;
+  }
   #rooms-show-controls{
     height: 315px;
     padding: 20px;
@@ -53,6 +60,21 @@
     height: calc(100vh - 256px);
     position: relative;
     overflow: scroll;
+
+    #code-main-quote{
+      color: #3A3F46;
+      text-shadow: none;
+      font-size: 18px;
+      text-align: center;
+      opacity: 0.9;
+      font-family: 'Raleway', sans-serif;
+      font-style: italic;
+      position: absolute;
+      left: calc(50% - 300px);
+      width: 600px;
+      max-height: 100px;
+      top: calc(50% - 40px);
+    }
   }
 
   #other-players-container{

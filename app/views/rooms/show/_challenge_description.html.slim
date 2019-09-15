@@ -1,4 +1,5 @@
 #code-main-title = @challenge.title
+#code-main-platform = @challenge.language.name
 #code-main-description.easy-font
   label Description
   p = @challenge.description
@@ -9,7 +10,7 @@
     .thead
       span.wid50 Input
       span.wid50 Outut
-    
+
     - @challenge.challenge_answers.where(is_test: [false, nil]).each do |ans|
       .tr
         span.wid50 = ans.input

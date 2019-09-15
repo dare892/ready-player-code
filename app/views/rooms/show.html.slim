@@ -1,7 +1,5 @@
-#wrap
-  #plane
-
 #rooms-show data-room-id="#{@room.id}"
+  / = image_tag 'wave2.gif', id: 'background-wave'
   .container-fluid
     .row
       .col-sm-3
@@ -13,6 +11,7 @@
         #code-main-outer-wrapper.relative-position
           #code-main-wrapper.main-card data-session-hash="#{current_user.session_hash}"
             / show/code_main
+            = render partial: "rooms/show/quote"
 
           #code-main-fake-button.button.button8.hidden onclick="submitRealForm()" SUBMIT
 
@@ -42,7 +41,7 @@
 javascript:
   function submitRealForm(){
     if($('#response_body').val() == ""){
-      show_ajax_alert('Response is empty. Please write some code!')
+      show_ajax_alert('Please write some code!')
     }
     else{
       $('#code-main-wrapper form input[type=submit]').click();

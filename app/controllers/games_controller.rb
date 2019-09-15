@@ -47,15 +47,15 @@ class GamesController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
+
   def load
-    
+
   end
-  
+
   def display_results
-    
+
   end
-  
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_game

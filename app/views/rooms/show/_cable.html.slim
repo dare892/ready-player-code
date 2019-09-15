@@ -194,7 +194,7 @@ javascript:
   //////////////////// GAME EFFECTS ////////////////////
   function myplayer_resetUI(){
     $('#code-challenge-container').addClass('hidden')
-    $('#code-main-wrapper').html('')
+    //$('#code-main-wrapper').html('')
   }
   function otherplayers_resetUI(){
     $('.other-player .progress-container').each(function(){
@@ -213,7 +213,14 @@ javascript:
     }
   }
 
-
+  function startGamePushed(){
+    if($('.other-player[data-session-hash]').length > 0){
+      $('[data-entity=start-game-btn] input[type=submit]').click()
+    }
+    else{
+      show_ajax_alert('You need at least 1 other opponent!')
+    }
+  }
   function resetGame(){
     $('#processing-code').addClass('hidden')
     myplayer_resetUI()
