@@ -4,17 +4,17 @@ class PagesController < ApplicationController
   access :user => [:single],
          :all => :all
   def index
-  
+
   end
-  
+
   def single
-    @challenges = Challenge.all.order(:difficulty)
+    # @challenges = Challenge.all.order(:difficulty)
   end
-  
+
   def test
     # response = params[:response]
     # debugger
-    response = "def readyPlayerCode(val) \n\n return val*2 \n end" 
+    response = "def readyPlayerCode(val) \n\n return val*2 \n end"
     testing_suite_info = Challenge::AVAILABLE_LANGUAGES['ruby']
     path = Rails.root.join("public", "docker-tests").to_s
     docker_file = "#{Time.now.to_i}_#{User.first.session_hash}" + testing_suite_info.last

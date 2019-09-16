@@ -5,6 +5,6 @@
     .profile-wins = "W : #{current_user.win.to_i}"
     .profile-wins.mar-lef20 = "L : #{current_user.loss.to_i}"
 
-  .mar-top10.text-centered
+  .out-link
     = link_to destroy_user_session_path, method: :delete do
       | Out

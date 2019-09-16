@@ -4,7 +4,7 @@
 a{
   color: white !important;
   text-decoration: underline !important;
-  font-size: 11px;
+  // font-size: 11px;
   cursor: pointer;
   &:hover{
     color: $purple;
@@ -22,6 +22,10 @@ a{
 .text-2{
   color: $yellow;
   text-shadow: 1px 1px 10px $yellow-lt1;
+}
+.text-3{
+  color: white;
+  text-shadow: none;
 }
 
 .easy-font{

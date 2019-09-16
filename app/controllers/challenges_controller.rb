@@ -18,10 +18,9 @@ class ChallengesController < ApplicationController
 
   def create
     @challenge = Challenge.new(challenge_params)
-
     respond_to do |format|
       if @challenge.save
-        format.html { redirect_to @challenge, notice: 'Challenge was successfully created.' }
+        format.html { redirect_to edit_challenge_path(@challenge), notice: 'Challenge was successfully created.' }
         format.json { render :show, status: :created, location: @challenge }
       else
         format.html { render :new }
@@ -33,7 +32,7 @@ class ChallengesController < ApplicationController
   def update
     respond_to do |format|
       if @challenge.update(challenge_params)
-        format.html { redirect_to @challenge, notice: 'Challenge was successfully updated.' }
+        format.html { redirect_to edit_challenge_path(@challenge), notice: 'Challenge was successfully updated.' }
         format.json { render :show, status: :ok, location: @challenge }
       else
         format.html { render :edit }
@@ -50,17 +49,17 @@ class ChallengesController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
+
   def load
     @challenge_game = ChallengeGame.find_by(game_id: params[:game_id], challenge: @challenge)
   end
-  
+
   private
     def set_challenge
       @challenge = Challenge.find(params[:id])
     end
 
     def challenge_params
-      params.require(:challenge).permit(:title, :description, :difficulty, :language_id)
+      params.require(:challenge).permit(:title, :description, :difficulty, :language_id, :published)
     end
 end

@@ -1,4 +1,5 @@
 .container.mar-top50
-  h3 New challenge_answer
+  =< link_to 'Back', edit_challenge_path(params[:challenge_id])
+
+  h3 New Answer Set
   == render 'form'
-  = link_to 'Back', challenge_answers_path

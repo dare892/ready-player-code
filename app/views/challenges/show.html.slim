@@ -1,29 +1,29 @@
 .container.mar-top50
-  h3 = @challenge.title
-  h5.mar-top30 = @challenge.description
-  .mar-top30
-    strong Difficulty:
-    span.mar-lef10 = @challenge.difficulty
-    
-  .mar-top70
-    h5 Answers
-    .pull-right
-      = link_to new_challenge_answer_path(challenge_id: @challenge.id) do
-        .button.button1 Add Answer
-    
-    table.table
-      thead
-        tr
-          th Input
-          th Output
-          th Is Test?
-      tbody
-        - @challenge.challenge_answers.order(:is_test).each do |answer|
-          tr
-            td = answer.input
-            td = answer.output
-            td = answer.is_test
+  .row
+    .col-sm-4
+      h6 = link_to 'Back', challenges_path
+      .main-card.pad20.easy-font.text-3
+        h4 = @challenge.title.titleize
+        h6.mar-top30 = @challenge.description
+        .mar-top30
+          strong Difficulty:
+          span.mar-lef10 = @challenge.difficulty.titleize
+          br
+          strong Language:
+          span.mar-lef10 = @challenge.language.name
 
-    => link_to 'Edit', edit_challenge_path(@challenge)
-    '|
-    =< link_to 'Back', challenges_path
+        #code-main-answers.mar-top25
+          label Examples
+          .fake-table.easy-font
+            .thead
+              span.wid50 Input
+              span.wid50 Outut
+
+            - @challenge.challenge_answers.where(is_test: [false, nil]).each do |ans|
+              .tr
+                span.wid50 = ans.input
+                span.wid50 = ans.output
+
+
+
+    .col-sm-8

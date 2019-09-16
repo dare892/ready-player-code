@@ -1,27 +1,17 @@
-h1 Listing challenges
+.container
+  h1 Listing challenges
 
-table
-  thead
-    tr
-      th Title
-      th Description
-      th Difficulty
-      th Language
-      th
-      th
-      th
+  - Language.order(:name).each do |language|
+    br
+    h5 = language.name
+    table.table.small-table
+      tbody
+        - language.challenges.order(:difficulty).each do |challenge|
+          tr
+            td = challenge.title
+            td = truncate(challenge.description, length: 50)
+            td = challenge.difficulty
+            td = link_to 'Edit', edit_challenge_path(challenge)
+  br
 
-  tbody
-    - @challenges.each do |challenge|
-      tr
-        td = challenge.title
-        td = challenge.description
-        td = challenge.difficulty
-        td = challenge.language
-        td = link_to 'Show', challenge
-        td = link_to 'Edit', edit_challenge_path(challenge)
-        td = link_to 'Destroy', challenge, data: { confirm: 'Are you sure?' }, method: :delete
-
-br
-
-= link_to 'New Challenge', new_challenge_path
+  = link_to 'New Challenge', new_challenge_path

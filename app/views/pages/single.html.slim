@@ -2,22 +2,25 @@
   #pages-single
     div
       = render partial: "profile/summary"
-    
+
     #right-side
-      h3 Challenges
-      table.table
-        thead
-          tr
-            th Title
-            th Difficulty
-            th 
-            
-        tbody
-          - @challenges.each do |challenge|
+      h5 Challenges
+      .mar-top30
+        table.table.small-table
+          thead
             tr
-              td 
-                = link_to challenge do
-                  = challenge.title
-              td = challenge.difficulty
-              td = current_user.responses.where(challenge: challenge)
-                  = challenge.title
+              th.text-2 Title
+              th.text-2 Difficulty
+              th.text-2 Language
+              th
+
+          tbody
+            - Language.order(:name).each do |language|
+              - Challenge.where(language: language).order(:difficulty).each do |challenge|
+                tr
+                  td
+                    = link_to challenge do
+                      = challenge.title
+                  td = challenge.difficulty
+                  td = challenge.language.name
+                  td = current_user.responses.find_by(challenge: challenge)

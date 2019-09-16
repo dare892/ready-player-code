@@ -7,11 +7,16 @@
           li = message
 
   .field.hidden
-    = f.text_field :challenge, value: @challenge_answer.try(:challenge_id) || params[:challenge_id]
+    = f.text_field :challenge_id, value: @challenge_answer.try(:challenge_id) || params[:challenge_id]
   .field
     = f.label :input
-    = f.text_area :input
+    = f.text_field :input
   .field
     = f.label :output
-    = f.text_area :output
-  .actions = f.submit
+    = f.text_field :output
+  .field
+    label Is Test?
+    = f.check_box :is_test
+
+  br
+  .actions = f.submit 'Submit', class: 'button button0'

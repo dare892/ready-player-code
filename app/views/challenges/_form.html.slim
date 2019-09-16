@@ -8,15 +8,21 @@
 
   .field
     = f.label :title
-    = f.text_field :title
+    = f.text_field :title, style: 'width: 400px;'
   .field
     = f.label :description
-    = f.text_area :description
+    = f.text_area :description, style: 'width: 100%;min-height: 200px;background-color:transparent;color:white;'
   .field
     = f.label :difficulty
     = f.select :difficulty, Challenge.difficulties.keys.map { |w| [w.humanize, w] }
-  
-  .field.hidden
-    = f.text_field :language_id, value: @challenge.try(:language_id) || params[:language_id]
-    
-  .actions = f.submit
+
+  .field
+    label Language
+    = f.select :language_id, Language.all.map { |w| [w.name, w.id] }
+
+  .field
+    label Published?
+    = f.check_box :published
+
+  br
+  .actions = f.submit 'Submit', class: 'button button0'

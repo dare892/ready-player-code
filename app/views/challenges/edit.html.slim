@@ -1,8 +1,42 @@
-h1 Editing challenge
+.container
+  => link_to 'Show', @challenge
+  '|
+  =< link_to 'Back', challenges_path
+  br
+  br
+  h3 Edit Challenge
+  .pull-right
+    h4.mar-top-40
+      = 'Status : '
+      span.text-2
+        = @challenge.published ? 'Published' : 'Draft'
 
-== render 'form'
+  == render 'form'
 
-=> link_to 'Show', @challenge
-'|
-=< link_to 'Back', challenges_path
+  .mar-top100
+    h5 Answers
+    table.table
+      thead
+        tr
+          th Input
+          th Output
+          th Is Test?
+      tbody
+        - @challenge.challenge_answers.order(:is_test).each do |answer|
+          tr
+            td = answer.input
+            td = answer.output
+            td = answer.is_test
+    = link_to new_challenge_answer_path(challenge_id: @challenge.id) do
+      .button.button1 Add Answer
 
+    br
+    br
+    br
+    br
+    br
+
+  = link_to @challenge, data: { confirm: 'Are you sure?' }, method: :delete do
+    .button.button6 Delete
+  br
+  br

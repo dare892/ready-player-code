@@ -19,7 +19,7 @@ class ChallengeAnswersController < ApplicationController
     @challenge_answer = ChallengeAnswer.new(challenge_answer_params)
     respond_to do |format|
       if @challenge_answer.save
-        format.html { redirect_to @challenge_answer, notice: 'Challenge answer was successfully created.' }
+        format.html { redirect_to edit_challenge_path(@challenge_answer.challenge), notice: 'Challenge answer was successfully created.' }
         format.json { render :show, status: :created, location: @challenge_answer }
       else
         format.html { render :new }
@@ -55,6 +55,6 @@ class ChallengeAnswersController < ApplicationController
     end
 
     def challenge_answer_params
-      params.require(:challenge_answer).permit(:challenge_id, :input, :output)
+      params.require(:challenge_answer).permit(:challenge_id, :input, :output, :is_test)
     end
 end

@@ -1,5 +1,8 @@
 .table{
   color: white;
+  &.small-table{
+    font-size: 11px;
+  }
 }
 
 .fake-table{
