@@ -4,15 +4,10 @@
       h6 = link_to 'Back', challenges_path
       .main-card.pad20.easy-font.text-3
         h4 = @challenge.title.titleize
+        .button.button6.pill = @challenge.difficulty.titleize
+        .button.button9.pill.mar-lef10 = @challenge.language.name.try(:titleize)
         h6.mar-top30 = @challenge.description
-        .mar-top30
-          strong Difficulty:
-          span.mar-lef10 = @challenge.difficulty.titleize
-          br
-          strong Language:
-          span.mar-lef10 = @challenge.language.name
-
-        #code-main-answers.mar-top25
+        #code-main-answers.mar-top30
           label Examples
           .fake-table.easy-font
             .thead
@@ -24,6 +19,19 @@
                 span.wid50 = ans.input
                 span.wid50 = ans.output
 
-
-
     .col-sm-8
+      .main-card
+        #editor
+
+      .main-card style="min-height: 100px;"
+        .card-label Logs
+
+javascript:
+  var editor = ace.edit("editor");
+  editor.setTheme("ace/theme/gob");
+  //editor.session.setMode("ace/mode/javascript");
+  $(document).ready(function(){
+    editor.session.on('change', function(delta) {
+      $('#response_body').val(editor.getValue());
+    });
+  })
