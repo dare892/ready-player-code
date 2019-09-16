@@ -14,10 +14,10 @@ class Game < ApplicationRecord
     "First, solve the problem. Then, write the code. <br> – John Johnson"
   ]
 
-  def setup(language)
+  def setup(s)
     # difficulty = self.room.difficulty
     difficulty = 'beginner'
-    gmg = GameMappingGroup.where(difficulty: difficulty, language: language).shuffle.first
+    gmg = GameMappingGroup.where(difficulty: difficulty).shuffle.first
     gmg.game_mappings.order(:sort).each_with_index do |game_mapping, index|
       self.challenge_games.create(
         challenge: game_mapping.challenge,

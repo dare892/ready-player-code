@@ -25,39 +25,10 @@ User.destroy_all
 
 puts "RUNNING SEEDS-----------"
 
-languages = ['javascript']
+languages = ['javascript', 'ruby']
 languages.each do |language|
   @l = Language.create(name: language)
-  # (0..4).each do |num|
-  #   (0..2).each do |chal_num|
-  #     @chal = @l.challenges.create(
-  #       title: "Sample #{language} challenge #{num+1}-#{chal_num+1}",
-  #       description: 'Do something awesome.',
-  #       difficulty: Challenge.difficulties.keys[num],
-  #       published: true
-  #     )
-  #     (0..3).each do |ans_num|
-  #       @chal.challenge_answers.create(
-  #         input: ans_num,
-  #         output: ans_num+2
-  #       )
-  #     end
-  #   end
-  # end
 end
-
-# (1..2).each do |n|
-#   GameMappingGroup.difficulties.keys.each do |difficulty|
-#     @gmg = GameMappingGroup.create(difficulty: difficulty, language: Language.first)
-#     challenges = Challenge.where(difficulty: difficulty)
-#     (0..2).each do |num|
-#       @gmg.game_mappings.create(
-#         challenge: challenges[num],
-#         sort: num
-#       )
-#     end
-#   end
-# end
 
 Rake::Task['db:challenges'].invoke
 @user = User.create(name: 'Admin', email: 'admin@example.com', password: 'qkrwhdtkd')

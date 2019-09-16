@@ -2,7 +2,7 @@ require 'open3'
 
 class PagesController < ApplicationController
   access :user => [:single],
-         :all => :all
+         :all => [:index]
   def index
 
   end

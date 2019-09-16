@@ -4,7 +4,6 @@ class CreateChallenges < ActiveRecord::Migration[5.1]
       t.string :title
       t.text :description
       t.integer :difficulty
-      t.references :language
       t.boolean :published, default: false
       t.timestamps
     end

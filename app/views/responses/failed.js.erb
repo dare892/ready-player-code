@@ -1,1 +1,2 @@
-show_ajax_alert("<%= @result %>")
+$('#code-main-log-output').removeClass('hidden').html("<%= @result %>")
+$('#processing-code').addClass('hidden')

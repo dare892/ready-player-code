@@ -1,7 +1,6 @@
 require 'open3'
 
 class Challenge < ApplicationRecord
-  belongs_to :language
   has_many :challenge_answers
 
   enum difficulty: ['beginner', 'easy', 'medium', 'hard', 'master']
@@ -12,11 +11,11 @@ class Challenge < ApplicationRecord
     "python" => ["python3", ".py"]
   }
 
-  def check_answer(response = nil)
+  def check_answer(response, language)
       # sleep(2)
-      # return 'pass'
+      return 'pass'
       # docker here
-    testing_suite_info = Challenge::LANGUAGES[self.language.name]
+    testing_suite_info = Challenge::LANGUAGES[language.name]
     path = Rails.root.join("public", "docker-tests").to_s
     docker_file = "#{Digest::SHA1.hexdigest([Time.now, rand].join)[0..10]}" + testing_suite_info.last
     f_name = path + "/#{docker_file}"

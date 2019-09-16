@@ -1,17 +1,14 @@
-.container
-  h1 Listing challenges
+.container.mar-top50
+  h2 Listing challenges
 
-  - Language.order(:name).each do |language|
-    br
-    h5 = language.name
-    table.table.small-table
-      tbody
-        - language.challenges.order(:difficulty).each do |challenge|
-          tr
-            td = challenge.title
-            td = truncate(challenge.description, length: 50)
-            td = challenge.difficulty
-            td = link_to 'Edit', edit_challenge_path(challenge)
+  table.table.small-table
+    tbody
+      - Challenge.order(:difficulty).each do |challenge|
+        tr
+          td = challenge.title
+          td = truncate(challenge.description, length: 50)
+          td = challenge.difficulty
+          td = link_to 'Edit', edit_challenge_path(challenge)
   br
 
   = link_to 'New Challenge', new_challenge_path

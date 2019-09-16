@@ -1,0 +1,20 @@
+#challenge-show{
+  #editor-card{
+    #editor-wrapper{
+      height: calc(100vh - 200px);
+      overflow: auto;
+    }
+    #editor-form{
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+    }
+  }
+  #logs-card{
+    min-height: 100px;
+    margin-top: 10px;
+    padding: 27px 20px 10px;
+    @extend .text-3, .easy-font;
+    font-size: 12px;
+  }
+}

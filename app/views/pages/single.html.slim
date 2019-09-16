@@ -9,18 +9,15 @@
         table.table.small-table
           thead
             tr
-              th.text-2 Title
-              th.text-2 Difficulty
-              th.text-2 Language
-              th
+              th.text-0 Title
+              th.text-0 Difficulty
+              th.text-0 Completed
 
           tbody
-            - Language.order(:name).each do |language|
-              - Challenge.where(language: language).order(:difficulty).each do |challenge|
-                tr
-                  td
-                    = link_to challenge do
-                      = challenge.title
-                  td = challenge.difficulty
-                  td = challenge.language.name
-                  td = current_user.responses.find_by(challenge: challenge)
+            - Challenge.order(:difficulty).each do |challenge|
+              tr
+                td
+                  = link_to challenge do
+                    = challenge.title
+                td = challenge.difficulty
+                td = custom_format(current_user.responses.where(challenge: challenge).order(created_at: :desc).first.try(:created_at))

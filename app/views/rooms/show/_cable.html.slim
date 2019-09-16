@@ -139,9 +139,14 @@ javascript:
         break;
       }
     }
+    myplayer_clearLogs()
     myplayer_increaseChallengeTicker()
     current_game_challenge_ids = challenge_ids
     myplayer_loadChallenge(current_game_challenge_ids[0])
+  }
+  
+  function myplayer_clearLogs(){
+    $('#code-main-log-output').addClass('hidden').html("<%= @result %>")
   }
 
   function otherplayers_displayProgressBar(){

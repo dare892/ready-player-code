@@ -17,33 +17,46 @@ class ResponsesController < ApplicationController
   end
 
   def create
-    @response = Response.new(response_params.merge(user: current_user))
-    @result = @response.challenge_game.challenge.check_answer(response_params[:body])
-    @game = @response.challenge_game.game
-
-    respond_to do |format|
-      if @result == 'pass'
-        if @response.save
-          if @game.completed_all_challenges(current_user)
-            @response.room.emit({'data_type':'in_game', 'message':'completed_game', 'game_id':@game.id})
-            @response.room.update(status: 'pending')
-            @game.win(current_user)
-            msg = @response.room.messages.create(body: "#{current_user.name} has won the game!")
-            format.js { render json: nil, status: :ok }
+    if params[:single]
+      @challenge = Challenge.find(response_params[:challenge_id])
+      @response = Response.new(response_params.merge(user: current_user))
+      @result = @challenge.check_answer(response_params[:body], Language.find(params[:language_id]))
+      respond_to do |format|
+        if @result == 'pass'
+          @response.save
+          format.js { render "responses/single_success.js.erb"}
+        else
+          format.js { render "responses/single_failed.js.erb"}
+        end
+      end
+    else
+      @response = Response.new(response_params.merge(user: current_user))
+      @result = @response.challenge_game.challenge.check_answer(response_params[:body], @response.challenge_game.game.room.language)
+      @game = @response.challenge_game.game
+      respond_to do |format|
+        if @result == 'pass'
+          if @response.save
+            if @game.completed_all_challenges(current_user)
+              @response.room.emit({'data_type':'in_game', 'message':'completed_game', 'game_id':@game.id})
+              @response.room.update(status: 'pending')
+              @game.win(current_user)
+              msg = @response.room.messages.create(body: "#{current_user.name} has won the game!")
+              format.js { render json: nil, status: :ok }
+            else
+              current_user.earn_points('challenge')
+              @response.room.emit({'data_type':'in_game', 'message':'completed_challenge', 'session_hash':current_user.session_hash, 'player_name':current_user.name})
+              format.js { render "responses/success.js.erb"}
+            end
           else
-            current_user.earn_points('challenge')
-            @response.room.emit({'data_type':'in_game', 'message':'completed_challenge', 'session_hash':current_user.session_hash, 'player_name':current_user.name})
-            format.js { render "responses/success.js.erb"}
+            format.js { render "shared/failed.js.erb"}
           end
         else
-          format.js { render "shared/failed.js.erb"}
+          format.js { render "responses/failed.js.erb"}
         end
-      else
-        format.js { render "responses/failed.js.erb"}
       end
     end
   end
-
+  
   def update
     respond_to do |format|
       if @response.update(response_params)
@@ -70,6 +83,6 @@ class ResponsesController < ApplicationController
     end
 
     def response_params
-      params.require(:response).permit(:challenge_game_id, :user_id, :body)
+      params.require(:response).permit(:challenge_game_id, :body, :challenge_id)
     end
 end

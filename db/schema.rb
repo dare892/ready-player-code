@@ -39,19 +39,15 @@ ActiveRecord::Schema.define(version: 20190909221256) do
     t.string "title"
     t.text "description"
     t.integer "difficulty"
-    t.bigint "language_id"
     t.boolean "published", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["language_id"], name: "index_challenges_on_language_id"
   end
 
   create_table "game_mapping_groups", force: :cascade do |t|
     t.integer "difficulty"
-    t.bigint "language_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["language_id"], name: "index_game_mapping_groups_on_language_id"
   end
 
   create_table "game_mappings", force: :cascade do |t|

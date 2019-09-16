@@ -11,7 +11,7 @@
 javascript:
   var editor = ace.edit("editor");
   editor.setTheme("ace/theme/gob");
-  editor.session.setMode("ace/mode/javascript");
+  editor.setFontSize("20px");
 
   $(document).ready(function(){
     editor.session.on('change', function(delta) {
