@@ -13,7 +13,7 @@ class Challenge < ApplicationRecord
 
   def check_answer(response, language)
       # sleep(2)
-      return 'pass'
+      # return 'pass'
       # docker here
     testing_suite_info = Challenge::LANGUAGES[language.name]
     path = Rails.root.join("public", "docker-tests").to_s
@@ -22,11 +22,17 @@ class Challenge < ApplicationRecord
     f = File.new(f_name, 'w+')
     f.puts(response)
     answer = self.challenge_answers.where(is_test: true).shuffle.last
-    f.puts("\n\n" + "puts readyPlayerCode(#{answer.input})")
+    case language.name
+    when 'ruby'
+      f.puts("\n\n" + "puts readyPlayerCode(#{answer.input})")
+    when 'javascript'
+      f.puts("\n\n" + "console.log(readyPlayerCode(#{answer.input}))")
+    end
     f.close
 
     begin
-      out, err, st = Open3.capture3("timeout 10 docker run --rm -v #{path}:/run-tests:ro dare892/code-test:latest #{testing_suite_info.first} /run-tests/#{docker_file}")
+      out, err, st = Open3.capture3("timeout 10 docker run --rm -v #{path}:/run-tests:ro dare892/code-test-#{language.name}:latest #{testing_suite_info.first} /run-tests/#{docker_file}")
+      
       File.delete(f_name)
       if err.present?
         err.chomp

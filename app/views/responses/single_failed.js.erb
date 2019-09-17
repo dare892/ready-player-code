@@ -1,2 +1,2 @@
-$("#challenge-logs").html("<%= @result %>")
+$("#challenge-logs").html("<%= j(render partial: 'responses/single_failed') %>")
 show_ajax_system("Try Again!")

@@ -2,7 +2,6 @@
   .container.mar-top50
     .row
       .col-sm-4
-        h6 = link_to 'Back', single_path
         .main-card.pad20.easy-font.text-3
           h4 = @challenge.title.titleize
           .button.button6.pill = @challenge.difficulty.titleize
@@ -28,6 +27,8 @@
                 .tr
                   span.wid50 = ans.input
                   span.wid50 = ans.output
+                  
+        h6.mar-top20.mar-lef5 = link_to 'Back', single_path
 
       .col-sm-8
         .main-card#editor-card

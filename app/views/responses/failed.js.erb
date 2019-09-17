@@ -1,2 +1,2 @@
-$('#code-main-log-output').removeClass('hidden').html("<%= @result %>")
+$('#code-main-log-output').removeClass('hidden').html("<%= j(render partial: 'responses/single_failed') %>")
 $('#processing-code').addClass('hidden')

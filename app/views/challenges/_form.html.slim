@@ -17,10 +17,6 @@
     = f.select :difficulty, Challenge.difficulties.keys.map { |w| [w.humanize, w] }
 
   .field
-    label Language
-    = f.select :language_id, Language.all.map { |w| [w.name, w.id] }
-
-  .field
     label Published?
     = f.check_box :published
 
