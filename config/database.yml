@@ -82,4 +82,5 @@ production:
   <<: *default
   database: readyplayercode_production
   username: readyplayercode
-  password: <%= ENV['READYPLAYERCODE_DATABASE_PASSWORD'] %>
+  password: 'password'
+  # password: <%= ENV['READYPLAYERCODE_DATABASE_PASSWORD'] %>
