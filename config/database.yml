@@ -81,6 +81,7 @@ test:
 production:
   <<: *default
   database: readyplayercode_production
-  username: readyplayercode
+  username: postgres
+  # username: readyplayercode
   password: password
   # password: <%= ENV['READYPLAYERCODE_DATABASE_PASSWORD'] %>
