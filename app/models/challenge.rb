@@ -12,7 +12,7 @@ class Challenge < ApplicationRecord
   }
 
   def check_answer(response, language)
-    puts "---CHECK_ANSWER for #{language.name}---"
+    Rails.logger.info "---CHECK_ANSWER for #{language.name}---"
       # sleep(3)
       # return 'pass'
       # docker here
