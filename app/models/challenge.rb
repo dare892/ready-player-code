@@ -12,8 +12,9 @@ class Challenge < ApplicationRecord
   }
 
   def check_answer(response, language)
-      sleep(3)
-      return 'pass'
+    puts "---CHECK_ANSWER for #{language.name}---"
+      # sleep(3)
+      # return 'pass'
       # docker here
     testing_suite_info = Challenge::LANGUAGES[language.name]
     path = Rails.root.join("public", "docker-tests").to_s
@@ -31,7 +32,7 @@ class Challenge < ApplicationRecord
     f.close
 
     begin
-      out, err, st = Open3.capture3("timeout 10 docker run --rm -v #{path}:/run-tests:ro dare892/code-test-#{language.name}:latest #{testing_suite_info.first} /run-tests/#{docker_file}")
+      out, err, st = Open3.capture3("timeout 10 sudo docker run --rm -v #{path}:/run-tests:ro dare892/code-test-#{language.name}:latest #{testing_suite_info.first} /run-tests/#{docker_file}")
       
       File.delete(f_name)
       if err.present?
