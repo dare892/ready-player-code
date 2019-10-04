@@ -17,6 +17,9 @@ class ResponsesController < ApplicationController
   end
 
   def create
+    puts "RESPONSE CREATED"
+    puts "RESPONSE CREATED"
+    puts "RESPONSE CREATED"
     if params[:single]
       @challenge = Challenge.find(response_params[:challenge_id])
       @response = Response.new(response_params.merge(user: current_user))
