@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20190909221256) do
     t.string "title"
     t.text "description"
     t.integer "difficulty"
+    t.integer "input_type"
     t.boolean "published", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

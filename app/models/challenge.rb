@@ -4,6 +4,7 @@ class Challenge < ApplicationRecord
   has_many :challenge_answers
 
   enum difficulty: ['beginner', 'easy', 'medium', 'hard', 'master']
+  enum input_type: ['integer','text']
 
   LANGUAGES = {
     "ruby" => ["ruby", ".rb"],
@@ -23,25 +24,33 @@ class Challenge < ApplicationRecord
     f = File.new(f_name, 'w+')
     f.puts(response)
     answer = self.challenge_answers.where(is_test: true).shuffle.last
+    if self.input_type == 'integer'
+      ans = answer.input
+    elsif self.input_type == 'text'
+      ans = "'#{answer.input}'"  
+    end
+    
     case language.name
     when 'ruby'
-      f.puts("\n\n" + "puts readyPlayerCode(#{answer.input})")
+      f.puts("\n\n" + "puts readyPlayerCode(#{ans})")
     when 'javascript'
-      f.puts("\n\n" + "console.log(readyPlayerCode(#{answer.input}))")
+      f.puts("\n\n" + "console.log(readyPlayerCode(#{ans}))")
     end
     f.close
 
     begin
-      out, err, st = Open3.capture3("timeout 10 sudo docker run --rm -v #{path}:/run-tests:ro dare892/code-test-#{language.name}:latest #{testing_suite_info.first} /run-tests/#{docker_file}")
-      
+      script = "timeout 10 docker run --rm -v #{path}:/run-tests:ro dare892/code-test-#{language.name}:latest #{testing_suite_info.first} /run-tests/#{docker_file}"
+      out, err, st = Open3.capture3(script)
       File.delete(f_name)
       if err.present?
         err.chomp
       else
-        if answer.output == out.to_s.gsub("\n","")
+        output = out.to_s.gsub("\n","")
+        if answer.output == output
           'pass'
         else
-          'Tested against a few answers and it is not correct!'
+          "Tested against a few answers and it is not correct. Try Again!"
+          # Your code returned < #{output} >, which is not the answer.
         end
       end
     rescue => ex
