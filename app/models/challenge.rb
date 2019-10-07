@@ -43,7 +43,7 @@ class Challenge < ApplicationRecord
     f.close
 
     begin
-      script = "timeout 10 docker run --rm -v #{path}:/run-tests:ro dare892/code-test-#{language.name}:latest #{testing_suite_info.first} /run-tests/#{docker_file}"
+      script = "timeout 10 sudo docker run --rm -v #{path}:/run-tests:ro dare892/code-test-#{language.name}:latest #{testing_suite_info.first} /run-tests/#{docker_file}"
       out, err, st = Open3.capture3(script)
       File.delete(f_name)
       if err.present?
