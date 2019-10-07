@@ -53,7 +53,7 @@ class Challenge < ApplicationRecord
         if answer.output == output
           'pass'
         else
-          "Tested against a few answers and it is not correct. Try Again!"
+          "Tested against a few answers and it is not correct. For example, the input #{ans} yielded #{output} but was supposed to yield #{answer.output}. Try again!"
           # Your code returned < #{output} >, which is not the answer.
         end
       end

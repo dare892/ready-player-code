@@ -47,7 +47,7 @@ namespace :db do
             },
             {
               input: 'panda',
-              output: "['p','a','n','d','a']",
+              output: "[ 'p', 'a', 'n', 'd', 'a']",
               is_test: true
             }
           ]
@@ -187,13 +187,13 @@ namespace :db do
         (0..GameMappingGroup.difficulties[difficulty]).each do |dif|
           case difficulty
           when 'beginner'
-            per_dif = 3
+            per_difficulty = 2
           when 'easy'
-            per_dif = 2
+            per_difficulty = 1
           else
-            per_dif = 1
+            per_difficulty = 1
           end
-          Challenge.where("difficulty = #{dif}").shuffle.last(per_dif).each_with_index do |chal, index|
+          Challenge.where("difficulty = #{dif}").shuffle.last(per_difficulty).each_with_index do |chal, index|
             @gmg.game_mappings.create(challenge: chal, sort: index)
           end
         end
