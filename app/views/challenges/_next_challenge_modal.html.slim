@@ -1,0 +1,9 @@
+.modal#next-challenge-modal
+  .modal-dialog.mar-top100
+    .modal-content
+      .text-centered
+        = image_tag 'hole.gif', id: 'wave-img'
+        .relative-position.mar-top90
+          h3 Challenge Completed!
+          = link_to Challenge.next_challenge(current_user) do
+            .button.button8.mar-top30 Continue To Next Challenge

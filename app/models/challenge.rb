@@ -11,6 +11,10 @@ class Challenge < ApplicationRecord
     "javascript" => ["node", ".js"],
     "python" => ["python3", ".py"]
   }
+  
+  def self.next_challenge(user)
+    Challenge.all.where.not(id: user.responses.where('challenge_game_id is null').pluck(:challenge_id)).first
+  end
 
   def check_answer(response, language)
     Rails.logger.info "---CHECK_ANSWER for #{language.name}---"

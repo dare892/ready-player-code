@@ -1,0 +1,14 @@
+#next-challenge-modal{
+  .modal-content{
+    padding: 0;
+    height: 290px;
+  }
+  img{
+    position: absolute;
+    left: 1px;
+    top: 1px;
+    width: calc(100% - 2px);
+    height: calc(100% - 2px);
+    opacity: 0.3;
+  }
+}

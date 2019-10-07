@@ -10,11 +10,14 @@
         h4.mar-bot40 = "Welcome, #{current_user.name}"
         = link_to rooms_path do
           .button.button6 Multi Player
-        .button.button1 onclick="show_ajax_alert('Single Player mode coming soon.')" Single Player
+          
+        = link_to single_path do
+          .button.button1 Single Player
+
+        / .button.button1 onclick="show_ajax_alert('Single Player mode coming soon.')" Single Player
 
         .mar-top30
           = link_to destroy_user_session_path, method: :delete do
             .link Out
 
-        / = link_to single_path do
-        /   .button.button0 Single Player
+        
