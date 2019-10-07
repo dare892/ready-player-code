@@ -7,3 +7,8 @@
           h3 Challenge Completed!
           = link_to Challenge.next_challenge(current_user) do
             .button.button8.mar-top30 Continue To Next Challenge
+
+javascript:
+  $(document).ready(function(){
+    $('#next-challenge-modal').modal('show')
+  })

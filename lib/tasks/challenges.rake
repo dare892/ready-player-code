@@ -20,38 +20,38 @@ namespace :db do
             }
           ]
         },
-        {
-          title: 'Beginner Challenge 1',
-          description: "Make a function named readyPlayerCode(num) where it returns an array of integers from num to 1000. Assume that num will be always smaller than 1000.",
-          input_type: "integer",
-          answers: [
-            {
-              input: '998',
-              output: "['998','999','1000']"
-            },
-            {
-              input: '996',
-              output: "[ 996, 997, 998, 999, 1000 ]",
-              is_test: true
-            }
-          ]
-        },
-        {
-          title: 'Beginner Challenge 2',
-          description: "Make a function named readyPlayerCode(str) that takes a string and returns an array of each letter.",
-          input_type: "text",
-          answers: [
-            {
-              input: 'hello',
-              output: "['h','e','l','l','o']"
-            },
-            {
-              input: 'panda',
-              output: "[ 'p', 'a', 'n', 'd', 'a']",
-              is_test: true
-            }
-          ]
-        },
+        # {
+        #   title: 'Beginner Challenge 1',
+        #   description: "Make a function named readyPlayerCode(num) where it returns an array of integers from num to 1000. Assume that num will be always smaller than 1000.",
+        #   input_type: "integer",
+        #   answers: [
+        #     {
+        #       input: '998',
+        #       output: "['998','999','1000']"
+        #     },
+        #     {
+        #       input: '996',
+        #       output: "[ 996, 997, 998, 999, 1000 ]",
+        #       is_test: true
+        #     }
+        #   ]
+        # },
+        # {
+        #   title: 'Beginner Challenge 2',
+        #   description: "Make a function named readyPlayerCode(str) that takes a string and returns an array of each letter.",
+        #   input_type: "text",
+        #   answers: [
+        #     {
+        #       input: 'hello',
+        #       output: "['h','e','l','l','o']"
+        #     },
+        #     {
+        #       input: 'panda',
+        #       output: "[ 'p', 'a', 'n', 'd', 'a' ]",
+        #       is_test: true
+        #     }
+        #   ]
+        # },
         {
           title: 'Beginner Challenge 3',
           description: "Have the function readyPlayerCode(str) take the str parameter being passed and return the string in reversed order. For example: if the input string is \"Hello World and Coders\" then your program should return the string sredoC dna dlroW olleH.",
