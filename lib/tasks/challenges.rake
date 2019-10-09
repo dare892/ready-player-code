@@ -2,6 +2,11 @@ require 'rake'
 
 namespace :db do
   task pop_challenges: :environment do
+    Challenge.destroy_all
+    GameMappingGroup.destroy_all
+    GameMapping.destroy_all
+    puts ">>>>DESTROYED ALL GAME OBJECTS>>>>"
+    
     lib = {
       'beginner' => [],
       'easy' => []

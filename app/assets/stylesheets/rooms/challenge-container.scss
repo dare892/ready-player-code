@@ -1,6 +1,5 @@
 #code-challenge-container{
   width: 300px;
-  // height: calc(100vh - 20px);
   border: solid $yellow 2px;
   position: absolute;
   left: 0;
@@ -9,10 +8,27 @@
   opacity: 0.95;
   border-radius: 5px;
   color: white;
-  overflow: auto;
+  &.folded{
+    margin-left: -300px;
+  }
   label{
     @extend .text-2;
     font-size: 13px;
+  }
+  #code-challenge-container-handle{
+    width: 25px;
+    height: 36px;
+    position: absolute;
+    right: -26px;
+    top: 10px;
+    border: solid yellow 2px;
+    font-size: 25px;
+    padding: 0px 7px;
+    border-radius: 0 3px 3px 0;
+    cursor: pointer;
+    &:hover{
+      background-color: yellow;
+    }
   }
   #code-main-title{
     padding: 2px 0 11px;
