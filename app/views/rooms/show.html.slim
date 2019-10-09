@@ -22,6 +22,8 @@
               = render partial: 'rooms/show/player', locals: {player: player}
 
   #code-challenge-container.hidden
+    #code-challenge-container-handle onclick="toggleChallengeContainerSlide()"
+      i class="fas fa-caret-right"
     #code-game-ticker-container
       #game-ticker-count
         span data-completed-count=""
@@ -49,4 +51,8 @@ javascript:
       $('#processing-code').removeClass('hidden')
       $('#code-main-log-output').html("RUNNING CODE...")
     }
+  }
+
+  function toggleChallengeContainerSlide(){
+    $('#code-challenge-container').toggleClass('folded')
   }
