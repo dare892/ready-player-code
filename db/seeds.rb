@@ -30,5 +30,5 @@ languages.each do |language|
   @l = Language.create(name: language)
 end
 
-Rake::Task['db:challenges'].invoke
+Rake::Task['db:pop_challenges'].invoke
 @user = User.create(name: 'Admin', email: 'admin@example.com', password: 'qkrwhdtkd')

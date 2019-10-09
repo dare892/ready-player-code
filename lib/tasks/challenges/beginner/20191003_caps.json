@@ -1,0 +1,16 @@
+{
+  "title": "Beginner Challenge 4",
+  "description": "Have the function readyPlayerCode(str) take the str parameter being passed and capitalize the first letter of each word. Words will be separated by only one space.",
+  "input_type": "text",
+  "answers": [
+    {
+      "input": "hello world",
+      "output": "Hello World"
+    },
+    {
+      "input": "i ran there",
+      "output": "I Ran There",
+      "is_test": true
+    }
+  ]
+}

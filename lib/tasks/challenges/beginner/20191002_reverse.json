@@ -1,0 +1,16 @@
+{
+  "title": "Beginner Challenge 3",
+  "description": "Have the function readyPlayerCode(str) take the str parameter being passed and return the string in reversed order. For example: if the input string is \"Hello World and Coders\" then your program should return the string sredoC dna dlroW olleH.",
+  "input_type": "text",
+  "answers": [
+    {
+      "input": "coderbyte",
+      "output": "etybredoc"
+    },
+    {
+      "input": "I Love Code",
+      "output": "edoC evoL I",
+      "is_test": true
+    }
+  ]
+}

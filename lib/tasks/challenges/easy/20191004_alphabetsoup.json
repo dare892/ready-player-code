@@ -1,0 +1,16 @@
+{
+  "title": "AlphabetSoup",
+  "description": "Have the function readyPlayerCode(str) take the str string parameter being passed and return the string with the letters in alphabetical order (ie. hello becomes ehllo). Assume numbers and punctuation symbols will not be included in the string.",
+  "input_type": "text",
+  "answers": [
+    {
+      "input": "coderbyte",
+      "output": "bcdeeorty"
+    },
+    {
+      "input": "hooplah",
+      "output": "ahhloop",
+      "is_test": true
+    }
+  ]
+}

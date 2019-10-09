@@ -1,0 +1,16 @@
+{
+  "title": "Warmup Challenge",
+  "description": "Write a function readyPlayerCode(num) that returns an integer that is double the number.",
+  "input_type": "integer",
+  "answers": [
+    {
+      "input": "1",
+      "output": "2"
+    },
+    {
+      "input": "2",
+      "output": "4",
+      "is_test": true
+    }
+  ]
+}
