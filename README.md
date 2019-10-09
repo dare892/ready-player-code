@@ -1,5 +1,5 @@
 # READY_PLAYER_CODE
-:video_game::game_die::headphones::boom::alien::dancers::skull:
+:video_game::game_die::headphones::boom::alien::dancers::skull::video_game::game_die::headphones::boom::alien::dancers::skull::video_game::game_die::headphones::boom::alien::dancers::skull:
 
 
 Welcome to ReadyPlayerCode beta! The live website can be found at https://readyplayercode.com
